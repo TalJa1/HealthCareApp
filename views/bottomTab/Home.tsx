@@ -11,7 +11,7 @@ import React from 'react';
 import {centerAll, main, vh, vw} from '../../services/styleSheets';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
-import {menuIcon} from '../../assets/svgXml';
+import {menuIcon, nextIcon} from '../../assets/svgXml';
 import * as Progress from 'react-native-progress';
 
 const Home = () => {
@@ -22,9 +22,23 @@ const Home = () => {
         <View style={{flex: 1}}>
           <Header />
           <Banner />
+          <DeseaseCatergory />
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const DeseaseCatergory: React.FC = () => {
+  return (
+    <View style={{paddingHorizontal: vw(5), marginVertical: vh(2)}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Text style={{color: '#344054', fontSize: 20, fontWeight: '600'}}>
+          Disease Categories
+        </Text>
+        {nextIcon(vw(7), vw(7), '#98A2B3')}
+      </View>
+    </View>
   );
 };
 
