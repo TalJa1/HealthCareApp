@@ -6,7 +6,16 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {vh, vw} from './services/styleSheets';
 import {StyleSheet, View} from 'react-native';
-import {homeIcon, listIcon, newsIcon, userIcon} from './assets/svgXml';
+import {
+  homeActiveIcon,
+  homeIcon,
+  listActiveIcon,
+  listIcon,
+  newsActiveIcon,
+  newsIcon,
+  userActiveIcon,
+  userIcon,
+} from './assets/svgXml';
 import Home from './views/bottomTab/Home';
 import ListScreen from './views/bottomTab/ListScreen';
 import News from './views/bottomTab/News';
@@ -40,7 +49,9 @@ const App = () => {
                 const iconSize = focused ? vw(7) : vw(6);
                 return (
                   <View style={[styles.iconContainer]}>
-                    {homeIcon(iconSize, iconSize, color)}
+                    {focused
+                      ? homeActiveIcon(iconSize, iconSize, color)
+                      : homeIcon(iconSize, iconSize, color)}
                   </View>
                 );
               },
@@ -55,7 +66,9 @@ const App = () => {
                 const iconSize = focused ? vw(7) : vw(6);
                 return (
                   <View style={[styles.iconContainer]}>
-                    {listIcon(iconSize, iconSize, color)}
+                    {focused
+                      ? listActiveIcon(iconSize, iconSize, color)
+                      : listIcon(iconSize, iconSize, color)}
                   </View>
                 );
               },
@@ -70,7 +83,9 @@ const App = () => {
                 const iconSize = focused ? vw(7) : vw(6);
                 return (
                   <View style={[styles.iconContainer]}>
-                    {newsIcon(iconSize, iconSize, color)}
+                    {focused
+                      ? newsActiveIcon(iconSize, iconSize, color)
+                      : newsIcon(iconSize, iconSize, color)}
                   </View>
                 );
               },
@@ -85,7 +100,9 @@ const App = () => {
                 const iconSize = focused ? vw(7) : vw(6);
                 return (
                   <View style={[styles.iconContainer]}>
-                    {userIcon(iconSize, iconSize, color)}
+                    {focused
+                      ? userActiveIcon(iconSize, iconSize, color)
+                      : userIcon(iconSize, iconSize, color)}
                   </View>
                 );
               },
