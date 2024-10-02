@@ -1,10 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
-import {main, vh, vw} from '../../services/styleSheets';
+import {centerAll, main, vh, vw} from '../../services/styleSheets';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {menuIcon} from '../../assets/svgXml';
+import * as Progress from 'react-native-progress';
 
 const Home = () => {
   useStatusBar('#EAECF5');
@@ -23,13 +31,32 @@ const Home = () => {
 const Banner: React.FC = () => {
   return (
     <View style={styles.bannerContainer}>
-      <View style={styles.bannerLeft}></View>
-      <View style={styles.bannerRight}>
-        <Image
-          style={{resizeMode: 'contain'}}
-          source={require('../../assets/home/footballer.png')}
-        />
+      <View style={{justifyContent: 'space-between', rowGap: vh(2)}}>
+        <View style={{flexDirection: 'row', columnGap: vw(3)}}>
+          <Progress.Circle
+            size={55}
+            borderWidth={0}
+            thickness={5}
+            progress={0}
+            strokeCap="round"
+            unfilledColor="#C7D7FE"
+            showsText={true}
+            formatText={() => ''}
+            color={'#0000FF'}
+          />
+          <View style={{justifyContent: 'space-between'}}>
+            <Text style={styles.progressLabel}>Ready for a new day?</Text>
+            <Text style={styles.progressText}>0 of 5 completed</Text>
+          </View>
+        </View>
+        <TouchableOpacity style={[styles.button, centerAll]}>
+          <Text style={styles.buttonText}>Check all tasks</Text>
+        </TouchableOpacity>
       </View>
+      <Image
+        style={styles.bannerImg}
+        source={require('../../assets/home/footballer.png')}
+      />
     </View>
   );
 };
@@ -84,7 +111,33 @@ const styles = StyleSheet.create({
     overflow: 'hidden', // Allow shadow to be visible outside the box
     justifyContent: 'space-between',
     paddingHorizontal: vw(3),
+    paddingVertical: vh(1),
   },
-  bannerLeft: {},
-  bannerRight: {},
+  progressText: {
+    fontWeight: '400',
+    fontSize: 12,
+    color: '#444CE7',
+  },
+  button: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#2D31A6',
+    paddingVertical: vh(1),
+    paddingHorizontal: vw(3),
+    borderRadius: 6,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  progressLabel: {
+    color: '#1D2939',
+    fontWeight: '600',
+    fontSize: 14,
+  },
+  bannerImg: {
+    position: 'absolute',
+    resizeMode: 'contain',
+    bottom: 0,
+    right: vw(3),
+  },
 });
