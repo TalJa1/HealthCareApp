@@ -45,12 +45,12 @@ const DiseaseCatergory: React.FC = () => {
         style={{marginVertical: vh(2)}}>
         {DiseaseCategoriesTabs.map((item, index) => {
           return (
-            <TouchableOpacity
+            <View
               key={index}
               style={[styles.diseaseCategoryContainer, centerAll]}>
               <Image source={item.img} />
               <Text style={styles.diseaseCategoryTxt}>{item.label}</Text>
-            </TouchableOpacity>
+            </View>
           );
         })}
       </ScrollView>
