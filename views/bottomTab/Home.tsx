@@ -13,6 +13,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {menuIcon, nextIcon} from '../../assets/svgXml';
 import * as Progress from 'react-native-progress';
+import {DiseaseCategoriesTabs} from '../../services/renderData';
 
 const Home = () => {
   useStatusBar('#EAECF5');
@@ -22,14 +23,14 @@ const Home = () => {
         <View style={{flex: 1}}>
           <Header />
           <Banner />
-          <DeseaseCatergory />
+          <DiseaseCatergory />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const DeseaseCatergory: React.FC = () => {
+const DiseaseCatergory: React.FC = () => {
   return (
     <View style={{paddingHorizontal: vw(5), marginVertical: vh(2)}}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -38,6 +39,21 @@ const DeseaseCatergory: React.FC = () => {
         </Text>
         {nextIcon(vw(7), vw(7), '#98A2B3')}
       </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{marginVertical: vh(2)}}>
+        {DiseaseCategoriesTabs.map((item, index) => {
+          return (
+            <TouchableOpacity
+              key={index}
+              style={[styles.diseaseCategoryContainer, centerAll]}>
+              <Image source={item.img} />
+              <Text style={styles.diseaseCategoryTxt}>{item.label}</Text>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 };
@@ -164,5 +180,15 @@ const styles = StyleSheet.create({
     right: 0,
     height: vh(20),
     zIndex: -2,
+  },
+  diseaseCategoryTxt: {
+    color: '#1D2939',
+    fontSize: 12,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+  diseaseCategoryContainer: {
+    width: vw(20),
+    alignSelf: 'flex-start',
   },
 });

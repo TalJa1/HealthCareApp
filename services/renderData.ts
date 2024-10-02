@@ -12,7 +12,7 @@ export const DiseaseCategoriesTabs = [
     label: 'Brain',
   },
   {
-    img: require('../assets/home/eyesGroup.png'),
+    img: require('../assets/home/earsGroup.png'),
     label: 'Ears, nose, throat',
   },
   {
