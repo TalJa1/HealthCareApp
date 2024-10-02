@@ -54,6 +54,10 @@ const Banner: React.FC = () => {
         </TouchableOpacity>
       </View>
       <Image
+        style={styles.bannerBackImg}
+        source={require('../../assets/home/bannerBack.png')}
+      />
+      <Image
         style={styles.bannerImg}
         source={require('../../assets/home/footballer.png')}
       />
@@ -139,5 +143,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     bottom: 0,
     right: vw(3),
+  },
+  bannerBackImg: {
+    position: 'absolute',
+    resizeMode: 'cover',
+    right: 0,
+    height: vh(20),
+    zIndex: -2,
   },
 });
