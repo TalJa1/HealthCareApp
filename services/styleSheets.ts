@@ -22,5 +22,4 @@ export const centerAll: TextStyle = {
 export const main: TextStyle = {
   backgroundColor: '#EAECF5',
   flex: 1,
-  paddingHorizontal: vw(5),
 };

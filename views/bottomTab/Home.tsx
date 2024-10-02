@@ -13,9 +13,24 @@ const Home = () => {
       <ScrollView contentContainerStyle={{flex: 1}}>
         <View style={{flex: 1}}>
           <Header />
+          <Banner />
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const Banner: React.FC = () => {
+  return (
+    <View style={styles.bannerContainer}>
+      <View style={styles.bannerLeft}></View>
+      <View style={styles.bannerRight}>
+        <Image
+          style={{resizeMode: 'contain'}}
+          source={require('../../assets/home/footballer.png')}
+        />
+      </View>
+    </View>
   );
 };
 
@@ -26,6 +41,7 @@ const Header: React.FC = () => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginVertical: vh(2),
+        paddingHorizontal: vw(5),
       }}>
       <Text style={styles.headerTxt}>Home</Text>
       <View
@@ -54,4 +70,21 @@ const styles = StyleSheet.create({
     height: vw(8),
     borderRadius: vw(4),
   },
+  bannerContainer: {
+    alignSelf: 'center',
+    width: vw(90),
+    borderRadius: 12,
+    flexDirection: 'row',
+    shadowColor: '#000',
+    shadowOffset: {width: 2, height: 4}, // Apply shadow only to the bottom
+    shadowOpacity: 0.25,
+    shadowRadius: 10, // Increase radius for more blur
+    elevation: 10, // For Android shadow
+    backgroundColor: '#EAECF5', // Ensure background color is set
+    overflow: 'hidden', // Allow shadow to be visible outside the box
+    justifyContent: 'space-between',
+    paddingHorizontal: vw(3),
+  },
+  bannerLeft: {},
+  bannerRight: {},
 });
