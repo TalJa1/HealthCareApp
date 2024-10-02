@@ -24,3 +24,5 @@ export const DiseaseCategoriesTabs = [
     label: 'Arms',
   },
 ];
+
+export const HomeLearnMoreData = [];
