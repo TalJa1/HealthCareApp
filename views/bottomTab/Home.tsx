@@ -5,7 +5,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 
 const Home = () => {
-  useStatusBar('white');
+  useStatusBar('#EAECF5');
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>

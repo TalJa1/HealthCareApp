@@ -20,6 +20,6 @@ export const centerAll: TextStyle = {
 };
 
 export const main: TextStyle = {
-  backgroundColor: 'white',
+  backgroundColor: '#EAECF5',
   flex: 1,
 };

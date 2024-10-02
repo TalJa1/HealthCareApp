@@ -35,8 +35,8 @@ const App = () => {
             tabBarActiveTintColor: '#2D31A6',
             tabBarShowLabel: false,
             tabBarStyle: {
-              borderTopColor: 'white',
-              backgroundColor: 'white',
+              borderTopColor: '#F9FAFB',
+              backgroundColor: '#F9FAFB',
               height: vh(8),
             },
           }}>
@@ -131,7 +131,7 @@ const App = () => {
 export default App;
 
 const styles = StyleSheet.create({
-  tabnavigationStyle: {backgroundColor: 'white', flex: 1},
+  tabnavigationStyle: {flex: 1},
   iconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
