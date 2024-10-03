@@ -91,7 +91,8 @@ export const HomeLearnMoreData = [
       'COVID-19 is a respiratory illness caused by the SARS-CoV-2 virus. It can cause mild to severe symptoms, including fever, cough, and difficulty breathing.',
     thingsToDo:
       'Practice social distancing, wear masks, wash hands frequently, and get vaccinated.',
-    thingsNotToDo: 'Avoid large gatherings, neglect hygiene, or ignore symptoms.',
+    thingsNotToDo:
+      'Avoid large gatherings, neglect hygiene, or ignore symptoms.',
     excercise: [
       {
         title: 'Breathing Exercises',
@@ -149,7 +150,8 @@ export const HomeLearnMoreData = [
       "Alzheimer's Disease is a progressive neurological disorder that causes memory loss, cognitive decline, and behavioral changes.",
     thingsToDo:
       'Engage in regular mental and physical exercise, maintain a healthy diet, and stay socially active.',
-    thingsNotToDo: 'Avoid isolation, neglect mental health, or consume unhealthy foods.',
+    thingsNotToDo:
+      'Avoid isolation, neglect mental health, or consume unhealthy foods.',
     excercise: [
       {
         title: 'Brain Games',
@@ -207,7 +209,8 @@ export const HomeLearnMoreData = [
       'Arthritis is a condition that causes inflammation and pain in the joints. It can affect people of all ages and can lead to decreased mobility.',
     thingsToDo:
       'Engage in regular low-impact exercise, maintain a healthy weight, and use joint protection techniques.',
-    thingsNotToDo: 'Avoid high-impact activities, neglect joint health, or consume inflammatory foods.',
+    thingsNotToDo:
+      'Avoid high-impact activities, neglect joint health, or consume inflammatory foods.',
     excercise: [
       {
         title: 'Swimming',
@@ -317,3 +320,11 @@ export const HomeLearnMoreData = [
     ],
   },
 ];
+
+export const getMonthYearHomeChart = (offset: number) => {
+  const date = new Date();
+  date.setMonth(date.getMonth() + offset);
+  const month = date.toLocaleString('default', {month: 'short'});
+  const year = date.getFullYear();
+  return `${month} ${year}`;
+};
