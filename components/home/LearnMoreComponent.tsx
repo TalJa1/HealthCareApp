@@ -31,7 +31,9 @@ const LearnMoreComponent: React.FC<LearnMoreComponentProps> = ({
       <Text style={styles.description} numberOfLines={2} ellipsizeMode="tail">
         {description}
       </Text>
-      <TouchableOpacity onPress={handleNavigate}>
+      <TouchableOpacity
+        style={{alignSelf: 'flex-start'}}
+        onPress={handleNavigate}>
         <Text style={styles.btnTxt}>Learn more</Text>
       </TouchableOpacity>
     </View>

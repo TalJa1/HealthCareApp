@@ -101,7 +101,7 @@ const Banner: React.FC = () => {
           />
           <View style={{justifyContent: 'space-between'}}>
             <Text style={styles.progressLabel}>Ready for a new day?</Text>
-            <Text style={styles.progressText}>0 of 5 completed</Text>
+            <Text style={styles.progressText}>0 of 6 completed</Text>
           </View>
         </View>
         <TouchableOpacity style={[styles.button, centerAll]}>
