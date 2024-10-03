@@ -376,3 +376,42 @@ export function getWeekDays(
 
   return result;
 }
+
+export const pastListTaskData = [
+  {
+    title: 'Walking',
+    description: '20–30 minutes',
+    img: require('../assets/home/excercise/walking.png'),
+    isCompleted: true,
+  },
+  {
+    title: 'Low-FODMAP Fruits',
+    description: '1–2 servings',
+    img: require('../assets/home/food/fruit.png'),
+    isCompleted: true,
+  },
+  {
+    title: 'Yoga',
+    description: '20–30 minutes',
+    img: require('../assets/home/excercise/yoga.png'),
+    isCompleted: true,
+  },
+  {
+    title: 'Oats',
+    description: '1/2–1 cup',
+    img: require('../assets/home/food/oats.png'),
+    isCompleted: true,
+  },
+  {
+    title: 'Deep Breathing',
+    description: '5–10 minutes',
+    img: require('../assets/home/excercise/deepBreathing.png'),
+    isCompleted: true,
+  },
+  {
+    title: 'Lean proteins',
+    description: '100–150g/meal',
+    img: require('../assets/home/food/meat.png'),
+    isCompleted: true,
+  },
+];
