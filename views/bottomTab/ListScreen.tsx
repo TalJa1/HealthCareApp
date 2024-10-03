@@ -17,6 +17,7 @@ const ListScreen = () => {
   useStatusBar('#EAECF5');
   const today = new Date().getDate();
   const [selectedDate, setSelectedDate] = useState<number>(today);
+  const [selectedMonth, setSelectedMonth] = useState('current');
 
   const handleDateChange = (dayDate: number) => {
     if (dayDate === selectedDate) {
@@ -32,6 +33,8 @@ const ListScreen = () => {
         <DateTimeRender
           selectedDate={selectedDate}
           handleDateChange={handleDateChange}
+          selectedMonth={selectedMonth}
+          setSelectedMonth={setSelectedMonth}
         />
       </ScrollView>
     </SafeAreaView>
@@ -41,8 +44,9 @@ const ListScreen = () => {
 const DateTimeRender: React.FC<{
   selectedDate: number;
   handleDateChange: (dayDate: number) => void;
-}> = ({selectedDate, handleDateChange}) => {
-  const [selectedMonth, setSelectedMonth] = useState('current');
+  setSelectedMonth: React.Dispatch<React.SetStateAction<string>>;
+  selectedMonth: string;
+}> = ({selectedDate, handleDateChange, selectedMonth, setSelectedMonth}) => {
   const today = new Date().getDate();
 
   return (
