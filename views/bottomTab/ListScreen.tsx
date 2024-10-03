@@ -62,7 +62,7 @@ const DateTimeRender: React.FC<{
       </Picker>
 
       <View style={[styles.dateContainer]}>
-        {getWeekDays().map((day, index) => {
+        {getWeekDays(selectedMonth).map((day, index) => {
           const dayDate = parseInt(day.date, 10);
           const isToday = dayDate === today;
           const isSelected = dayDate === selectedDate;

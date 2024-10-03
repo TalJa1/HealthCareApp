@@ -329,19 +329,49 @@ export const getMonthYearHomeChart = (offset: number) => {
   return `${month} ${year}`;
 };
 
-export function getWeekDays(): {dayOfWeek: string; date: string}[] {
+export function getWeekDays(
+  selectedMonth: string,
+): {dayOfWeek: string; date: string}[] {
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const today = new Date();
-  const result = [];
+  let result = [];
 
-  for (let i = -3; i <= 3; i++) {
-    const date = new Date(today);
-    date.setDate(today.getDate() + i);
+  if (selectedMonth === 'current') {
+    for (let i = -3; i <= 3; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
 
-    const dayOfWeek = i === 0 ? 'Today' : daysOfWeek[date.getDay()];
-    const formattedDate = date.getDate().toString().padStart(2, '0'); // Ensure two digits
+      const dayOfWeek = i === 0 ? 'Today' : daysOfWeek[date.getDay()];
+      const formattedDate = date.getDate().toString().padStart(2, '0'); // Ensure two digits
 
-    result.push({dayOfWeek, date: formattedDate});
+      result.push({dayOfWeek, date: formattedDate});
+    }
+  } else {
+    let monthOffset = 0;
+    if (selectedMonth === 'previous1') {
+      monthOffset = -1;
+    } else if (selectedMonth === 'previous2') {
+      monthOffset = -2;
+    } else if (selectedMonth === 'previous3') {
+      monthOffset = -3;
+    }
+
+    const previousMonth = new Date(
+      today.getFullYear(),
+      today.getMonth() + monthOffset,
+      0,
+    );
+    const lastDayOfPreviousMonth = previousMonth.getDate();
+
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date(previousMonth);
+      date.setDate(lastDayOfPreviousMonth - i);
+
+      const dayOfWeek = daysOfWeek[date.getDay()];
+      const formattedDate = date.getDate().toString().padStart(2, '0'); // Ensure two digits
+
+      result.push({dayOfWeek, date: formattedDate});
+    }
   }
 
   return result;
