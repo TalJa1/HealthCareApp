@@ -16,6 +16,7 @@ import {
   ListScreenDateProps,
   ListScreenMainProps,
 } from '../../services/typeProps';
+import {taskModifierIcon} from '../../assets/svgXml';
 
 const ListScreen = () => {
   useStatusBar('#EAECF5');
@@ -55,9 +56,27 @@ const ListScreen = () => {
 };
 
 const Main: React.FC<ListScreenMainProps> = ({isChangeable}) => {
-  console.log('isChangeable', isChangeable);
-
-  return <View></View>;
+  return (
+    <View style={{paddingHorizontal: vw(5), marginTop: vh(2)}}>
+      <View style={{rowGap: vh(1)}}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Text style={{fontSize: 18, fontWeight: '600', color: '#1D2939'}}>
+            Star your day
+          </Text>
+          {isChangeable ? (
+            <TouchableOpacity>
+              {taskModifierIcon(vw(7), vw(7))}
+            </TouchableOpacity>
+          ) : (
+            ''
+          )}
+        </View>
+        <Text style={{color: '#444CE7', fontSize: 14, fontWeight: '600'}}>
+          2 of 6 completed
+        </Text>
+      </View>
+    </View>
+  );
 };
 
 const DateTimeRender: React.FC<ListScreenDateProps> = ({

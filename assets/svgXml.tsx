@@ -9,6 +9,20 @@ export const test = (w?: any, h?: any, color?: any) => {
   return <SvgXml xml={xml} width={w} height={h} />;
 };
 
+export const taskModifierIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.6666 7.58325H18.6666" stroke="#667085" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.00004 7.58325H2.33337" stroke="#667085" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.6667 11.6667C13.9219 11.6667 15.75 9.8385 15.75 7.58333C15.75 5.32817 13.9219 3.5 11.6667 3.5C9.41154 3.5 7.58337 5.32817 7.58337 7.58333C7.58337 9.8385 9.41154 11.6667 11.6667 11.6667Z" stroke="#667085" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M25.6667 20.4167H21" stroke="#667085" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.33337 20.4167H2.33337" stroke="#667085" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.3333 24.4999C18.5885 24.4999 20.4167 22.6717 20.4167 20.4166C20.4167 18.1614 18.5885 16.3333 16.3333 16.3333C14.0782 16.3333 12.25 18.1614 12.25 20.4166C12.25 22.6717 14.0782 24.4999 16.3333 24.4999Z" stroke="#667085" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
 export const plusIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M26.3333 14.6667H16.6667V5C16.6667 4.44772 16.219 4 15.6667 4C15.1144 4 14.6667 4.44772 14.6667 5V14.6667H5C4.44772 14.6667 4 15.1144 4 15.6667C4 16.219 4.44772 16.6667 5 16.6667H14.6667V26.3333C14.6667 26.8856 15.1144 27.3333 15.6667 27.3333C16.219 27.3333 16.6667 26.8856 16.6667 26.3333V16.6667H26.3333C26.8856 16.6667 27.3333 16.219 27.3333 15.6667C27.3333 15.1144 26.8856 14.6667 26.3333 14.6667Z" fill=${
