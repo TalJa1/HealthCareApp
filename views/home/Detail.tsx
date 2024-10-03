@@ -12,7 +12,7 @@ import React, {useState} from 'react';
 import {main, vh, vw} from '../../services/styleSheets';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {HomeLearnMoreData} from '../../services/renderData';
-import {backIcon, doubleSaveIcon} from '../../assets/svgXml';
+import {backIcon, doubleSaveIcon, plusIcon} from '../../assets/svgXml';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {LearnMoreData} from '../../services/typeProps';
 
@@ -111,8 +111,33 @@ const MainContent: React.FC<{data: LearnMoreData}> = ({data}) => {
         <View style={styles.contentContainer}>
           {data.excercise.map((exercise, index) => (
             <View key={index} style={styles.itemContainer}>
-              <Text style={styles.itemTitle}>{exercise.title}</Text>
-              <Text style={styles.itemSubtitle}>{exercise.subTitle}</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    columnGap: vw(2),
+                  }}>
+                  <Image source={exercise.img} />
+                  <View>
+                    <Text style={styles.itemTitle}>{exercise.title}</Text>
+                    <Text style={styles.itemSubtitle}>{exercise.subTitle}</Text>
+                  </View>
+                </View>
+                <TouchableOpacity
+                  style={{
+                    borderRadius: vw(20),
+                    backgroundColor: '#E0EAFF',
+                    padding: vh(1),
+                  }}>
+                  {plusIcon(vw(5), vw(5))}
+                </TouchableOpacity>
+              </View>
               <Text style={styles.itemDescription}>{exercise.description}</Text>
             </View>
           ))}
@@ -227,6 +252,7 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     marginBottom: 16,
+    rowGap: vh(1),
   },
   itemTitle: {
     fontSize: 16,
@@ -234,12 +260,12 @@ const styles = StyleSheet.create({
     color: '#1D2939',
   },
   itemSubtitle: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '400',
-    color: '#667085',
+    color: '#3538CD',
   },
   itemDescription: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '400',
     color: '#667085',
   },

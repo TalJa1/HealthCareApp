@@ -9,6 +9,17 @@ export const test = (w?: any, h?: any, color?: any) => {
   return <SvgXml xml={xml} width={w} height={h} />;
 };
 
+export const plusIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M26.3333 14.6667H16.6667V5C16.6667 4.44772 16.219 4 15.6667 4C15.1144 4 14.6667 4.44772 14.6667 5V14.6667H5C4.44772 14.6667 4 15.1144 4 15.6667C4 16.219 4.44772 16.6667 5 16.6667H14.6667V26.3333C14.6667 26.8856 15.1144 27.3333 15.6667 27.3333C16.219 27.3333 16.6667 26.8856 16.6667 26.3333V16.6667H26.3333C26.8856 16.6667 27.3333 16.219 27.3333 15.6667C27.3333 15.1144 26.8856 14.6667 26.3333 14.6667Z" fill=${
+    color ?? '#444CE7'
+  }/>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
 export const doubleSaveIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M12.89 5.88H5.10999C3.39999 5.88 2 7.27999 2 8.98999V20.35C2 21.8 3.04 22.42 4.31 21.71L8.23999 19.52C8.65999 19.29 9.34 19.29 9.75 19.52L13.68 21.71C14.95 22.42 15.99 21.8 15.99 20.35V8.98999C16 7.27999 14.6 5.88 12.89 5.88Z" stroke=${
