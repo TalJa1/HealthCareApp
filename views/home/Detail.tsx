@@ -101,8 +101,33 @@ const MainContent: React.FC<{data: LearnMoreData}> = ({data}) => {
         <View style={styles.contentContainer}>
           {data.foodsToEat.map((food, index) => (
             <View key={index} style={styles.itemContainer}>
-              <Text style={styles.itemTitle}>{food.title}</Text>
-              <Text style={styles.itemSubtitle}>{food.subTitle}</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  flex: 1,
+                  columnGap: vw(2),
+                }}>
+                <Image resizeMode="contain" source={food.img} />
+                <View
+                  style={{
+                    justifyContent: 'space-between',
+                    flex: 1,
+                  }}>
+                  <Text style={styles.itemTitle}>{food.title}</Text>
+                  <Text style={styles.itemSubtitle}>{food.subTitle}</Text>
+                  <Text style={styles.itemValue}>{food.value}</Text>
+                </View>
+                <TouchableOpacity
+                  style={{
+                    borderRadius: vw(20),
+                    backgroundColor: '#E0EAFF',
+                    padding: vh(1),
+                    alignSelf: 'flex-start',
+                  }}>
+                  {plusIcon(vw(5), vw(5))}
+                </TouchableOpacity>
+              </View>
               <Text style={styles.itemDescription}>{food.description}</Text>
             </View>
           ))}
@@ -114,16 +139,10 @@ const MainContent: React.FC<{data: LearnMoreData}> = ({data}) => {
               <View
                 style={{
                   flexDirection: 'row',
-                  alignItems: 'center',
                   justifyContent: 'space-between',
                 }}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: vw(2),
-                  }}>
-                  <Image source={exercise.img} />
+                <View style={styles.imgGrp}>
+                  <Image resizeMode="contain" source={exercise.img} />
                   <View>
                     <Text style={styles.itemTitle}>{exercise.title}</Text>
                     <Text style={styles.itemSubtitle}>{exercise.subTitle}</Text>
@@ -134,6 +153,7 @@ const MainContent: React.FC<{data: LearnMoreData}> = ({data}) => {
                     borderRadius: vw(20),
                     backgroundColor: '#E0EAFF',
                     padding: vh(1),
+                    alignSelf: 'flex-start',
                   }}>
                   {plusIcon(vw(5), vw(5))}
                 </TouchableOpacity>
@@ -225,7 +245,7 @@ const styles = StyleSheet.create({
   tabsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderBottomColor: '#667085',
     marginBottom: 16,
   },
@@ -268,5 +288,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '400',
     color: '#667085',
+  },
+  itemValue: {
+    color: '#027A48',
+    fontSize: 12,
+    fontWeight: '400',
+  },
+  imgGrp: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: vw(2),
   },
 });
