@@ -13,20 +13,45 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {menuIcon, nextIcon} from '../../assets/svgXml';
 import * as Progress from 'react-native-progress';
-import {DiseaseCategoriesTabs} from '../../services/renderData';
+import {
+  DiseaseCategoriesTabs,
+  HomeLearnMoreData,
+} from '../../services/renderData';
+import LearnMoreComponent from '../../components/home/LearnMoreComponent';
 
 const Home = () => {
   useStatusBar('#EAECF5');
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={{flex: 1}}>
-        <View style={{flex: 1}}>
+      <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <View style={{flex: 1, marginBottom: vh(2)}}>
           <Header />
           <Banner />
           <DiseaseCatergory />
+          <TabsRender />
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const TabsRender: React.FC = () => {
+  const tabsData = HomeLearnMoreData;
+  return (
+    <View style={{rowGap: vh(2)}}>
+      {tabsData.map((tab, index) => {
+        return (
+          <View key={index} style={{paddingHorizontal: vw(5)}}>
+            <LearnMoreComponent
+              description={tab.description}
+              img={tab.img}
+              index={index}
+              label={tab.disease}
+            />
+          </View>
+        );
+      })}
+    </View>
   );
 };
 

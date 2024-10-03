@@ -22,3 +22,10 @@ export interface LearnMoreData {
   excercise: Exercise[];
   foodsToEat: Food[];
 }
+
+export interface LearnMoreComponentProps {
+  index: number;
+  label: string;
+  img: any;
+  description: string;
+}
