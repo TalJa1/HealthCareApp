@@ -29,13 +29,10 @@ const ListScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <Header />
-        <View style={{paddingHorizontal: vw(5)}}>
-          <DateTimeRender
-            selectedDate={selectedDate}
-            handleDateChange={handleDateChange}
-          />
-        </View>
+        <DateTimeRender
+          selectedDate={selectedDate}
+          handleDateChange={handleDateChange}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -45,51 +42,8 @@ const DateTimeRender: React.FC<{
   selectedDate: number;
   handleDateChange: (dayDate: number) => void;
 }> = ({selectedDate, handleDateChange}) => {
-  const today = new Date().getDate();
-
-  return (
-    <View style={[styles.dateContainer]}>
-      {getWeekDays().map((day, index) => {
-        const dayDate = parseInt(day.date, 10);
-        const isToday = dayDate === today;
-        const isSelected = dayDate === selectedDate;
-        const isPast = dayDate < today;
-
-        return (
-          <TouchableOpacity
-            key={index}
-            style={styles.dateTxtContainer}
-            onPress={() => handleDateChange(dayDate)}>
-            <Text style={[styles.dateofWeek, isToday && {color: '#444CE7'}]}>
-              {day.dayOfWeek}
-            </Text>
-            <View
-              style={[
-                styles.dateCircle,
-                isToday && !isSelected && styles.todayCircle,
-                isSelected && styles.selectedCircle,
-                isToday && isSelected && {backgroundColor: '#4E5BA6'},
-              ]}>
-              <Text
-                style={[
-                  styles.datetime,
-                  isToday && !isSelected && styles.todayText,
-                  isSelected && styles.selectedText,
-                  !isToday && !isSelected && styles.defaultText,
-                  isPast && !isSelected && {color: '#B0B7C3'},
-                ]}>
-                {day.date}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        );
-      })}
-    </View>
-  );
-};
-
-const Header: React.FC = () => {
   const [selectedMonth, setSelectedMonth] = useState('current');
+  const today = new Date().getDate();
 
   return (
     <View style={{paddingHorizontal: vw(5)}}>
@@ -106,6 +60,44 @@ const Header: React.FC = () => {
         <Picker.Item label={getMonthYearHomeChart(-2)} value="previous2" />
         <Picker.Item label={getMonthYearHomeChart(-3)} value="previous3" />
       </Picker>
+
+      <View style={[styles.dateContainer]}>
+        {getWeekDays().map((day, index) => {
+          const dayDate = parseInt(day.date, 10);
+          const isToday = dayDate === today;
+          const isSelected = dayDate === selectedDate;
+          const isPast = dayDate < today;
+
+          return (
+            <TouchableOpacity
+              key={index}
+              style={styles.dateTxtContainer}
+              onPress={() => handleDateChange(dayDate)}>
+              <Text style={[styles.dateofWeek, isToday && {color: '#444CE7'}]}>
+                {day.dayOfWeek}
+              </Text>
+              <View
+                style={[
+                  styles.dateCircle,
+                  isToday && !isSelected && styles.todayCircle,
+                  isSelected && styles.selectedCircle,
+                  isToday && isSelected && {backgroundColor: '#4E5BA6'},
+                ]}>
+                <Text
+                  style={[
+                    styles.datetime,
+                    isToday && !isSelected && styles.todayText,
+                    isSelected && styles.selectedText,
+                    !isToday && !isSelected && styles.defaultText,
+                    isPast && !isSelected && {color: '#B0B7C3'},
+                  ]}>
+                  {day.date}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </View>
   );
 };

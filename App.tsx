@@ -34,11 +34,12 @@ const App = () => {
           screenOptions={{
             tabBarInactiveTintColor: '#8098F9',
             tabBarActiveTintColor: '#2D31A6',
-            tabBarShowLabel: false,
+            tabBarShowLabel: true,
             tabBarStyle: {
               borderTopColor: '#F9FAFB',
               backgroundColor: '#F9FAFB',
               height: vh(8),
+              paddingBottom: vh(1),
             },
           }}>
           <Tab.Screen
@@ -59,7 +60,7 @@ const App = () => {
             }}
           />
           <Tab.Screen
-            name="ListScreen"
+            name="List"
             component={ListScreen}
             options={{
               headerShown: false,
@@ -93,7 +94,7 @@ const App = () => {
             }}
           />
           <Tab.Screen
-            name="UserScreen"
+            name="User"
             component={UserScreen}
             options={{
               headerShown: false,
