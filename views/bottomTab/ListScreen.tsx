@@ -12,6 +12,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {getMonthYearHomeChart, getWeekDays} from '../../services/renderData';
 import {Picker} from '@react-native-picker/picker';
 import useStatusBar from '../../services/useStatusBar';
+import {
+  ListScreenDateProps,
+  ListScreenMainProps,
+} from '../../services/typeProps';
 
 const ListScreen = () => {
   useStatusBar('#EAECF5');
@@ -36,17 +40,32 @@ const ListScreen = () => {
           selectedMonth={selectedMonth}
           setSelectedMonth={setSelectedMonth}
         />
+        <Main
+          selectedDate={selectedDate}
+          selectedMonth={selectedMonth}
+          isChangeable={
+            selectedMonth === 'current' &&
+            selectedDate >= today &&
+            selectedDate - today < 4
+          }
+        />
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const DateTimeRender: React.FC<{
-  selectedDate: number;
-  handleDateChange: (dayDate: number) => void;
-  setSelectedMonth: React.Dispatch<React.SetStateAction<string>>;
-  selectedMonth: string;
-}> = ({selectedDate, handleDateChange, selectedMonth, setSelectedMonth}) => {
+const Main: React.FC<ListScreenMainProps> = ({isChangeable}) => {
+  console.log('isChangeable', isChangeable);
+
+  return <View></View>;
+};
+
+const DateTimeRender: React.FC<ListScreenDateProps> = ({
+  selectedDate,
+  handleDateChange,
+  selectedMonth,
+  setSelectedMonth,
+}) => {
   const today = new Date().getDate();
 
   return (

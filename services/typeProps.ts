@@ -29,3 +29,16 @@ export interface LearnMoreComponentProps {
   img: any;
   description: string;
 }
+
+export interface ListScreenDateProps {
+  selectedDate: number;
+  handleDateChange: (dayDate: number) => void;
+  setSelectedMonth: React.Dispatch<React.SetStateAction<string>>;
+  selectedMonth: string;
+}
+
+export interface ListScreenMainProps {
+  selectedDate: number;
+  selectedMonth: string;
+  isChangeable: boolean;
+}
