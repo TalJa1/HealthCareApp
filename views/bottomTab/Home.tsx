@@ -36,7 +36,10 @@ const Home = () => {
       })
       .catch(err => {
         console.log(err);
-        saveData(`TasksStorage${getCurrentMonthAndDate()}`, currentListTaskData);
+        saveData(
+          `TasksStorage${getCurrentMonthAndDate()}`,
+          currentListTaskData,
+        );
         setTaskData(currentListTaskData);
       });
   };
@@ -112,6 +115,8 @@ const DiseaseCatergory: React.FC = () => {
 const Banner: React.FC<{data: TaskProps[]}> = ({data}) => {
   const taskDone = data.filter(task => task.isCompleted === true).length;
 
+  const progress = taskDone / data.length;
+
   return (
     <View style={styles.bannerContainer}>
       <View style={{justifyContent: 'space-between', rowGap: vh(2)}}>
@@ -120,7 +125,7 @@ const Banner: React.FC<{data: TaskProps[]}> = ({data}) => {
             size={55}
             borderWidth={0}
             thickness={5}
-            progress={0}
+            progress={progress}
             strokeCap="round"
             unfilledColor="#C7D7FE"
             showsText={true}

@@ -42,6 +42,7 @@ export interface ListScreenMainProps {
   selectedMonth: string;
   isChangeable: boolean;
   renderData: TaskProps[];
+  setChange: React.Dispatch<React.SetStateAction<TaskProps[]>>;
 }
 
 export interface TaskProps {
