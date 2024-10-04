@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {centerAll, main, vh, vw} from '../../services/styleSheets';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
@@ -111,10 +111,14 @@ const DiseaseCatergory: React.FC = () => {
 };
 
 const Banner: React.FC<{data: TaskProps[]}> = ({data}) => {
+  const [progess, setProgess] = useState(0);
   const taskDone = data.filter(task => task.isCompleted === true).length;
-  console.log('taskDone', taskDone);
 
-  const progress = taskDone / data.length;
+  useEffect(() => {
+    if (data.length > 0) {
+      setProgess(taskDone / data.length);
+    }
+  }, [taskDone, data.length]);
 
   return (
     <View style={styles.bannerContainer}>
@@ -124,7 +128,7 @@ const Banner: React.FC<{data: TaskProps[]}> = ({data}) => {
             size={55}
             borderWidth={0}
             thickness={5}
-            progress={progress}
+            progress={progess}
             strokeCap="round"
             unfilledColor="#C7D7FE"
             showsText={true}
