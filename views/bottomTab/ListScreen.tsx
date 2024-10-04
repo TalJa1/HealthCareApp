@@ -28,7 +28,8 @@ import {
 import {completeIcon, taskModifierIcon} from '../../assets/svgXml';
 import ListTaskComponent from '../../components/list/ListTaskComponent';
 import {loadData, saveData} from '../../services/storage';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const ListScreen = () => {
   useStatusBar('#EAECF5');
@@ -98,6 +99,7 @@ const Main: React.FC<ListScreenMainProps> = ({
   renderData,
   setChange,
 }) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const today = new Date().getDate();
   const isModifiable = selectedDate === today;
   const numberOfFinishedTasks = renderData.filter(
@@ -165,6 +167,10 @@ const Main: React.FC<ListScreenMainProps> = ({
     }
   };
 
+  const handleModifyTask = () => {
+    navigation.navigate('Customize');
+  };
+
   return (
     <View style={{paddingHorizontal: vw(5), marginTop: vh(2)}}>
       <View style={{rowGap: vh(1)}}>
@@ -173,7 +179,9 @@ const Main: React.FC<ListScreenMainProps> = ({
             Star your day
           </Text>
           {isChangeable ? (
-            <TouchableOpacity disabled={!isModifiable}>
+            <TouchableOpacity
+              onPress={() => handleModifyTask()}
+              disabled={!isModifiable}>
               {taskModifierIcon(vw(7), vw(7))}
             </TouchableOpacity>
           ) : (
