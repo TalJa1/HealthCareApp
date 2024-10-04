@@ -16,6 +16,7 @@ import * as Progress from 'react-native-progress';
 import {
   currentListTaskData,
   DiseaseCategoriesTabs,
+  getCurrentMonthAndDate,
   HomeLearnMoreData,
 } from '../../services/renderData';
 import LearnMoreComponent from '../../components/home/LearnMoreComponent';
@@ -28,14 +29,14 @@ const Home = () => {
   const [taskData, setTaskData] = useState<TaskProps[]>([]);
 
   const fetchData = async () => {
-    await loadData<TaskProps[]>('TasksStorage')
+    await loadData<TaskProps[]>(`TasksStorage${getCurrentMonthAndDate()}`)
       .then(data => {
         console.log(data);
         setTaskData(data);
       })
       .catch(err => {
         console.log(err);
-        saveData('TasksStorage', currentListTaskData);
+        saveData(`TasksStorage${getCurrentMonthAndDate()}`, currentListTaskData);
         setTaskData(currentListTaskData);
       });
   };

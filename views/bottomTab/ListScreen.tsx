@@ -12,6 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   currentListTaskData,
   futureListTaskData,
+  getCurrentMonthAndDate,
   getMonthYearHomeChart,
   getWeekDays,
   pastListTaskData,
@@ -44,14 +45,17 @@ const ListScreen = () => {
   };
 
   const fetchData = async () => {
-    await loadData<TaskProps[]>('TasksStorage')
+    await loadData<TaskProps[]>(`TasksStorage${getCurrentMonthAndDate()}`)
       .then(data => {
         console.log(data);
         setRenderData(data);
       })
       .catch(err => {
         console.log(err);
-        saveData('TasksStorage', currentListTaskData);
+        saveData(
+          `TasksStorage${getCurrentMonthAndDate()}`,
+          currentListTaskData,
+        );
         setRenderData(currentListTaskData);
       });
   };

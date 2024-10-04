@@ -493,3 +493,10 @@ export const futureListTaskData = [
     isCompleted: false,
   },
 ];
+
+export function getCurrentMonthAndDate(): string {
+  const today = new Date();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  const date = today.getDate().toString().padStart(2, '0');
+  return `${month}${date}`;
+}
