@@ -42,3 +42,10 @@ export interface ListScreenMainProps {
   selectedMonth: string;
   isChangeable: boolean;
 }
+
+export interface TaskProps {
+  title: string;
+  description: string;
+  img: any; // Use appropriate type if known, e.g., ImageSourcePropType for React Native
+  isCompleted: boolean;
+}

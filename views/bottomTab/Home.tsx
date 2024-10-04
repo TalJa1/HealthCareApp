@@ -7,26 +7,50 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {centerAll, main, vh, vw} from '../../services/styleSheets';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {menuIcon, nextIcon} from '../../assets/svgXml';
 import * as Progress from 'react-native-progress';
 import {
+  currentListTaskData,
   DiseaseCategoriesTabs,
   HomeLearnMoreData,
 } from '../../services/renderData';
 import LearnMoreComponent from '../../components/home/LearnMoreComponent';
+import {loadData} from '../../services/storage';
+import {TaskProps} from '../../services/typeProps';
+import {useFocusEffect} from '@react-navigation/native';
 
 const Home = () => {
   useStatusBar('#EAECF5');
+  const [taskData, setTaskData] = useState<TaskProps[]>([]);
+
+  const fetchData = async () => {
+    await loadData<TaskProps[]>('TasksStorage')
+      .then(data => {
+        console.log(data);
+        setTaskData(data);
+      })
+      .catch(err => {
+        console.log(err);
+        setTaskData(currentListTaskData);
+      });
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, []),
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1, marginBottom: vh(2)}}>
           <Header />
-          <Banner />
+          <Banner data={taskData} />
           <DiseaseCatergory />
           <TabsRender />
         </View>
@@ -83,7 +107,9 @@ const DiseaseCatergory: React.FC = () => {
   );
 };
 
-const Banner: React.FC = () => {
+const Banner: React.FC<{data: TaskProps[]}> = ({data}) => {
+  const taskDone = data.filter(task => task.isCompleted === true).length;
+
   return (
     <View style={styles.bannerContainer}>
       <View style={{justifyContent: 'space-between', rowGap: vh(2)}}>
@@ -101,7 +127,9 @@ const Banner: React.FC = () => {
           />
           <View style={{justifyContent: 'space-between'}}>
             <Text style={styles.progressLabel}>Ready for a new day?</Text>
-            <Text style={styles.progressText}>0 of 6 completed</Text>
+            <Text style={styles.progressText}>
+              {taskDone} of {data.length} completed
+            </Text>
           </View>
         </View>
         <TouchableOpacity style={[styles.button, centerAll]}>
