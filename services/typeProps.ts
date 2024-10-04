@@ -79,3 +79,8 @@ export interface NewsItem {
   prevention: string[];
   treatment: string[];
 }
+
+export interface NewsRenderProps {
+  data: NewsItem[];
+  showButton: boolean;
+}

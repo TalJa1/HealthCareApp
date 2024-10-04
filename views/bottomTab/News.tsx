@@ -6,11 +6,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {main, vh, vw} from '../../services/styleSheets';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {menuIcon} from '../../assets/svgXml';
+import {NewsItem, NewsRenderProps} from '../../services/typeProps';
+import {loadData, saveData} from '../../services/storage';
+import {getCurrentMonthAndDate, NewsListData} from '../../services/renderData';
+import {useFocusEffect} from '@react-navigation/native';
 
 const News = () => {
   useStatusBar('#EAECF5');
@@ -28,6 +32,25 @@ const News = () => {
 
 const MainContent: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<'all' | 'follow'>('all');
+  const [renderData, setRenderData] = useState<NewsItem[]>([]);
+
+  const fetchData = async () => {
+    await loadData<NewsItem[]>(`NewsData${getCurrentMonthAndDate()}`)
+      .then(data => {
+        setRenderData(data);
+      })
+      .catch(() => {
+        saveData(`NewsData${getCurrentMonthAndDate()}`, NewsListData);
+        setRenderData(NewsListData);
+      });
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, []),
+  );
+
   return (
     <View>
       <View style={styles.tabContainer}>
@@ -55,10 +78,18 @@ const MainContent: React.FC = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.content}>
-        {selectedTab === 'all' ? <View></View> : <View></View>}
+        {selectedTab === 'all' ? (
+          <NewsRender data={renderData} showButton={false} />
+        ) : (
+          <NewsRender data={renderData} showButton={true} />
+        )}
       </View>
     </View>
   );
+};
+
+const NewsRender: React.FC<NewsRenderProps> = () => {
+  return <View></View>;
 };
 
 const Header: React.FC = () => {
