@@ -70,3 +70,12 @@ export interface TabRenderListProps {
   setCount: React.Dispatch<React.SetStateAction<number[]>>;
   count: number[];
 }
+
+export interface NewsItem {
+  title: string;
+  post: string;
+  description: string;
+  img: any; // You can replace 'any' with the specific type if you know it
+  prevention: string[];
+  treatment: string[];
+}

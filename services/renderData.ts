@@ -544,6 +544,7 @@ export const NewsListData = [
       'Pharmacotherapy: Antidepressants may be prescribed by a doctor to manage symptoms.',
       'Continuous monitoring and support: Adhere to treatment and ensure ongoing support from family and healthcare providers.',
     ],
+    isFollowed: false,
   },
   {
     title: 'Prevention and Treatment of Insomnia',
@@ -561,6 +562,7 @@ export const NewsListData = [
       'Medications: Prescription sleep aids may be used for short-term treatment.',
       'Lifestyle changes: Incorporate relaxation techniques, such as deep breathing and progressive muscle relaxation, into your daily routine.',
     ],
+    isFollowed: false,
   },
   {
     title: 'Prevention and Treatment of Measles',
@@ -578,6 +580,7 @@ export const NewsListData = [
       'Fever management: Use fever reducers, such as acetaminophen or ibuprofen, as directed by a healthcare provider.',
       'Monitor for complications: Seek medical attention if you experience severe symptoms or complications, such as pneumonia or encephalitis.',
     ],
+    isFollowed: false,
   },
   {
     title: 'Prevention and Treatment of Dengue Fever',
@@ -595,5 +598,6 @@ export const NewsListData = [
       'Pain relief: Use pain relievers, such as acetaminophen, to manage symptoms. Avoid aspirin and nonsteroidal anti-inflammatory drugs (NSAIDs).',
       'Seek medical attention: If you experience severe symptoms, such as severe abdominal pain, persistent vomiting, or bleeding, seek medical care immediately.',
     ],
+    isFollowed: false,
   },
 ];
