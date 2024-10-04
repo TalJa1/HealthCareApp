@@ -6,23 +6,34 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {main, vh, vw} from '../../services/styleSheets';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {getMonthYearHomeChart, getWeekDays} from '../../services/renderData';
+import {
+  currentListTaskData,
+  futureListTaskData,
+  getMonthYearHomeChart,
+  getWeekDays,
+  pastListTaskData,
+} from '../../services/renderData';
 import {Picker} from '@react-native-picker/picker';
 import useStatusBar from '../../services/useStatusBar';
 import {
   ListScreenDateProps,
   ListScreenMainProps,
+  TaskProps,
 } from '../../services/typeProps';
 import {taskModifierIcon} from '../../assets/svgXml';
+import ListTaskComponent from '../../components/list/ListTaskComponent';
+import {loadData, saveData} from '../../services/storage';
+import {useFocusEffect} from '@react-navigation/native';
 
 const ListScreen = () => {
   useStatusBar('#EAECF5');
   const today = new Date().getDate();
   const [selectedDate, setSelectedDate] = useState<number>(today);
   const [selectedMonth, setSelectedMonth] = useState('current');
+  const [renderData, setRenderData] = useState<TaskProps[]>([]);
 
   const handleDateChange = (dayDate: number) => {
     if (dayDate === selectedDate) {
@@ -31,6 +42,25 @@ const ListScreen = () => {
 
     setSelectedDate(dayDate);
   };
+
+  const fetchData = async () => {
+    await loadData<TaskProps[]>('TasksStorage')
+      .then(data => {
+        console.log(data);
+        setRenderData(data);
+      })
+      .catch(err => {
+        console.log(err);
+        saveData('TasksStorage', currentListTaskData);
+        setRenderData(currentListTaskData);
+      });
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, []),
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,6 +79,7 @@ const ListScreen = () => {
             selectedDate >= today &&
             selectedDate - today < 4
           }
+          renderData={renderData}
         />
       </ScrollView>
     </SafeAreaView>
@@ -58,6 +89,21 @@ const ListScreen = () => {
 const Main: React.FC<ListScreenMainProps> = ({isChangeable, selectedDate}) => {
   const today = new Date().getDate();
   const isModifiable = selectedDate === today;
+
+  const renderView = () => {
+    if (isChangeable) {
+      if (isModifiable) {
+        return (
+          <View>
+            <Text>Today</Text>
+          </View>
+        );
+      }
+      return <ListTaskComponent data={futureListTaskData} />;
+    } else {
+      return <ListTaskComponent data={pastListTaskData} />;
+    }
+  };
 
   return (
     <View style={{paddingHorizontal: vw(5), marginTop: vh(2)}}>
@@ -74,12 +120,7 @@ const Main: React.FC<ListScreenMainProps> = ({isChangeable, selectedDate}) => {
             ''
           )}
         </View>
-        <Text style={{color: '#444CE7', fontSize: 14, fontWeight: '600'}}>
-          2 of 6 completed
-        </Text>
-        <View>
-          
-        </View>
+        <View>{renderView()}</View>
       </View>
     </View>
   );

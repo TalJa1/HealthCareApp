@@ -9,6 +9,16 @@ export const test = (w?: any, h?: any, color?: any) => {
   return <SvgXml xml={xml} width={w} height={h} />;
 };
 
+export const completeIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.5 25.6666H17.5C23.3334 25.6666 25.6667 23.3333 25.6667 17.4999V10.4999C25.6667 4.66659 23.3334 2.33325 17.5 2.33325H10.5C4.66671 2.33325 2.33337 4.66659 2.33337 10.4999V17.4999C2.33337 23.3333 4.66671 25.6666 10.5 25.6666Z" stroke="#039855" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.04163 13.9999L12.3433 17.3016L18.9583 10.6982" stroke="#039855" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
 export const taskModifierIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M25.6666 7.58325H18.6666" stroke="#667085" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>

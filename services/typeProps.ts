@@ -41,6 +41,7 @@ export interface ListScreenMainProps {
   selectedDate: number;
   selectedMonth: string;
   isChangeable: boolean;
+  renderData: TaskProps[];
 }
 
 export interface TaskProps {
