@@ -19,7 +19,7 @@ import {
   HomeLearnMoreData,
 } from '../../services/renderData';
 import LearnMoreComponent from '../../components/home/LearnMoreComponent';
-import {loadData} from '../../services/storage';
+import {loadData, saveData} from '../../services/storage';
 import {TaskProps} from '../../services/typeProps';
 import {useFocusEffect} from '@react-navigation/native';
 
@@ -35,6 +35,7 @@ const Home = () => {
       })
       .catch(err => {
         console.log(err);
+        saveData('TasksStorage', currentListTaskData);
         setTaskData(currentListTaskData);
       });
   };
