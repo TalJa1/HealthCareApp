@@ -59,4 +59,6 @@ export interface CuztomizeMainProps {
   setAdditionTask: React.Dispatch<React.SetStateAction<TaskProps[]>>;
 }
 
-export interface TabRenderListProps {}
+export interface TabRenderListProps {
+  data: TaskProps[];
+}

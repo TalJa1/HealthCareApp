@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -125,14 +126,14 @@ const MainContent: React.FC<CuztomizeMainProps> = ({
             <Text style={styles.mainCountText}>
               Cancel ( {cancelTasks.length} ) task
             </Text>
-            <TabRender />
+            <TabRender data={currentTask} />
           </View>
         ) : (
           <View>
             <Text style={styles.mainCountText}>
               Move ( {moveTasks.length} ) to your tasks
             </Text>
-            <TabRender />
+            <TabRender data={additionTask} />
           </View>
         )}
       </View>
@@ -140,8 +141,25 @@ const MainContent: React.FC<CuztomizeMainProps> = ({
   );
 };
 
-const TabRender: React.FC<TabRenderListProps> = () => {
-  return <View></View>;
+const TabRender: React.FC<TabRenderListProps> = ({data}) => {
+  return (
+    <View style={{rowGap: vh(2), marginTop: vh(2)}}>
+      {data.map((item, index) => {
+        return (
+          <View key={index} style={styles.tabRenderContainer}>
+            <View style={styles.tabLeftGroup}>
+              <Image source={item.img} style={styles.tabLeftImg} />
+              <View style={{justifyContent: 'space-between'}}>
+                <Text style={styles.tabTitle}>{item.title}</Text>
+                <Text style={styles.tabDes}>{item.description}</Text>
+              </View>
+            </View>
+            <TouchableOpacity style={styles.tabBtn} />
+          </View>
+        );
+      })}
+    </View>
+  );
 };
 
 const Header: React.FC = () => {
@@ -213,5 +231,43 @@ const styles = StyleSheet.create({
     color: '#444CE7',
     fontSize: 14,
     fontWeight: '600',
+  },
+  tabRenderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: vw(3),
+    paddingVertical: vh(1),
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#E4E7EC',
+  },
+  tabLeftGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    columnGap: vw(2),
+  },
+  tabLeftImg: {
+    width: vw(12),
+    height: vw(12),
+    resizeMode: 'contain',
+  },
+  tabTitle: {
+    color: '#1D2939',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  tabDes: {
+    color: '#3538CD',
+    fontSize: 14,
+    fontWeight: '400',
+  },
+  tabBtn: {
+    width: vw(8),
+    height: vw(8),
+    borderRadius: vw(25),
+    borderColor: '#717BBC',
+    borderWidth: 2,
   },
 });
