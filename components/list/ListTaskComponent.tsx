@@ -16,7 +16,11 @@ const ListTaskComponent: React.FC<{data: TaskProps[]}> = ({data}) => {
       <View style={{rowGap: vh(2), marginVertical: vh(2)}}>
         {data.map((item, index) => {
           return (
-            <View key={index} style={styles.taskContainer}>
+            <View
+              key={index}
+              style={
+                isPast ? styles.taskCompleteContainer : styles.taskContainer
+              }>
               <View style={{flexDirection: 'row', columnGap: vw(2)}}>
                 <Image source={item.img} style={styles.img} />
                 <View style={{justifyContent: 'space-between'}}>
@@ -46,7 +50,7 @@ export default ListTaskComponent;
 
 const styles = StyleSheet.create({
   container: {flex: 1},
-  taskContainer: {
+  taskCompleteContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#EEF4FF',
@@ -56,6 +60,16 @@ const styles = StyleSheet.create({
     borderBottomWidth: 3,
     borderRightWidth: 3,
     borderColor: '#A4BCFD',
+  },
+  taskContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'transparent',
+    paddingVertical: vh(1),
+    paddingHorizontal: vw(3),
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#E4E7EC',
   },
   img: {
     width: vw(12),
@@ -86,7 +100,7 @@ const styles = StyleSheet.create({
     width: vw(20),
     borderRadius: 6,
     borderColor: '#E4E7EC',
-    borderWidth: 1,
+    borderWidth: 2,
   },
   markAsCompleteTxt: {
     textAlign: 'center',
