@@ -61,4 +61,5 @@ export interface CuztomizeMainProps {
 
 export interface TabRenderListProps {
   data: TaskProps[];
+  setCount: React.Dispatch<React.SetStateAction<number[]>>;
 }

@@ -126,14 +126,14 @@ const MainContent: React.FC<CuztomizeMainProps> = ({
             <Text style={styles.mainCountText}>
               Cancel ( {cancelTasks.length} ) task
             </Text>
-            <TabRender data={currentTask} />
+            <TabRender data={currentTask} setCount={setCancelTasks} />
           </View>
         ) : (
           <View>
             <Text style={styles.mainCountText}>
               Move ( {moveTasks.length} ) to your tasks
             </Text>
-            <TabRender data={additionTask} />
+            <TabRender data={additionTask} setCount={setMoveTasks} />
           </View>
         )}
       </View>
@@ -141,7 +141,17 @@ const MainContent: React.FC<CuztomizeMainProps> = ({
   );
 };
 
-const TabRender: React.FC<TabRenderListProps> = ({data}) => {
+const TabRender: React.FC<TabRenderListProps> = ({data, setCount}) => {
+  const handleCount = (index: number) => {
+    setCount(prev => {
+      if (prev.includes(index)) {
+        return prev.filter(item => item !== index);
+      } else {
+        return [...prev, index];
+      }
+    });
+  };
+
   return (
     <View style={{rowGap: vh(2), marginTop: vh(2)}}>
       {data.map((item, index) => {
@@ -154,7 +164,10 @@ const TabRender: React.FC<TabRenderListProps> = ({data}) => {
                 <Text style={styles.tabDes}>{item.description}</Text>
               </View>
             </View>
-            <TouchableOpacity style={styles.tabBtn} />
+            <TouchableOpacity
+              onPress={() => handleCount(index)}
+              style={styles.tabBtn}
+            />
           </View>
         );
       })}
