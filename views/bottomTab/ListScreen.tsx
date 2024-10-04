@@ -55,7 +55,10 @@ const ListScreen = () => {
   );
 };
 
-const Main: React.FC<ListScreenMainProps> = ({isChangeable}) => {
+const Main: React.FC<ListScreenMainProps> = ({isChangeable, selectedDate}) => {
+  const today = new Date().getDate();
+  const isModifiable = selectedDate === today;
+
   return (
     <View style={{paddingHorizontal: vw(5), marginTop: vh(2)}}>
       <View style={{rowGap: vh(1)}}>
@@ -64,7 +67,7 @@ const Main: React.FC<ListScreenMainProps> = ({isChangeable}) => {
             Star your day
           </Text>
           {isChangeable ? (
-            <TouchableOpacity>
+            <TouchableOpacity disabled={!isModifiable}>
               {taskModifierIcon(vw(7), vw(7))}
             </TouchableOpacity>
           ) : (
