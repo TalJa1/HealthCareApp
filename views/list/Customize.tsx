@@ -19,7 +19,11 @@ import {
   getCurrentDayOfWeekAndDate,
   getCurrentMonthAndDate,
 } from '../../services/renderData';
-import {CuztomizeMainProps, TaskProps} from '../../services/typeProps';
+import {
+  CuztomizeMainProps,
+  TabRenderListProps,
+  TaskProps,
+} from '../../services/typeProps';
 import {loadData, saveData} from '../../services/storage';
 
 const Customize = () => {
@@ -81,7 +85,62 @@ const Customize = () => {
   );
 };
 
-const MainContent: React.FC<CuztomizeMainProps> = () => {
+const MainContent: React.FC<CuztomizeMainProps> = ({
+  currentTask,
+  additionTask,
+}) => {
+  const [selectedTab, setSelectedTab] = useState<'current' | 'list'>('current');
+  const [cancelTasks, setCancelTasks] = useState<number[]>([]);
+  const [moveTasks, setMoveTasks] = useState<number[]>([]);
+
+  return (
+    <View style={styles.mainContainer}>
+      <View style={styles.tabContainer}>
+        <TouchableOpacity
+          style={[styles.tab, selectedTab === 'current' && styles.selectedTab]}
+          onPress={() => setSelectedTab('current')}>
+          <Text
+            style={[
+              styles.tabText,
+              selectedTab === 'current' && styles.tabActiveText,
+            ]}>
+            Current tasks({currentTask.length})
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.tab, selectedTab === 'list' && styles.selectedTab]}
+          onPress={() => setSelectedTab('list')}>
+          <Text
+            style={[
+              styles.tabText,
+              selectedTab === 'list' && styles.tabActiveText,
+            ]}>
+            On your list({additionTask.length})
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.content}>
+        {selectedTab === 'current' ? (
+          <View>
+            <Text style={styles.mainCountText}>
+              Cancel ( {cancelTasks.length} ) task
+            </Text>
+            <TabRender />
+          </View>
+        ) : (
+          <View>
+            <Text style={styles.mainCountText}>
+              Move ( {moveTasks.length} ) to your tasks
+            </Text>
+            <TabRender />
+          </View>
+        )}
+      </View>
+    </View>
+  );
+};
+
+const TabRender: React.FC<TabRenderListProps> = () => {
   return <View></View>;
 };
 
@@ -118,5 +177,41 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: vh(2),
+  },
+  mainContainer: {
+    flex: 1,
+  },
+  tabContainer: {
+    flexDirection: 'row',
+    borderBottomWidth: 0.4,
+    borderBottomColor: '#667085',
+  },
+  tab: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: 'transparent',
+  },
+  selectedTab: {
+    borderBottomColor: '#2D31A6',
+  },
+  tabText: {
+    fontSize: 16,
+    color: '#667085',
+    fontWeight: '400',
+  },
+  tabActiveText: {
+    fontSize: 16,
+    color: '#2D31A6',
+    fontWeight: '600',
+  },
+  content: {
+    marginTop: vh(2),
+  },
+  mainCountText: {
+    color: '#444CE7',
+    fontSize: 14,
+    fontWeight: '600',
   },
 });
