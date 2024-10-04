@@ -80,6 +80,43 @@ const Customize = () => {
     }
     return true;
   };
+  const handleSave = () => {
+    if (selectedTab === 'current') {
+      const newCurrentTask = currentTask.filter(
+        (_, index) => !cancelTasks.includes(index),
+      );
+      const canceledTasks = currentTask.filter((_, index) =>
+        cancelTasks.includes(index),
+      );
+      const newAdditionTask = [...additionTask, ...canceledTasks];
+
+      setCurrentTask(newCurrentTask);
+      setAdditionTask(newAdditionTask);
+      saveData(`TasksStorage${getCurrentMonthAndDate()}`, newCurrentTask);
+      saveData(
+        `AdditionTasksStorage${getCurrentMonthAndDate()}`,
+        newAdditionTask,
+      );
+      setCancelTasks([]);
+    } else if (selectedTab === 'list') {
+      const newAdditionTask = additionTask.filter(
+        (_, index) => !moveTasks.includes(index),
+      );
+      const movedTasks = additionTask.filter((_, index) =>
+        moveTasks.includes(index),
+      );
+      const newCurrentTask = [...currentTask, ...movedTasks];
+
+      setAdditionTask(newAdditionTask);
+      setCurrentTask(newCurrentTask);
+      saveData(
+        `AdditionTasksStorage${getCurrentMonthAndDate()}`,
+        newAdditionTask,
+      );
+      saveData(`TasksStorage${getCurrentMonthAndDate()}`, newCurrentTask);
+      setMoveTasks([]);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -102,6 +139,7 @@ const Customize = () => {
       </ScrollView>
       <View style={styles.btnSaveContainer}>
         <TouchableOpacity
+          onPress={() => handleSave()}
           disabled={isSaveButtonDisabled()}
           style={[
             isSaveButtonDisabled() ? styles.btnSave : styles.btnSaveActive,
