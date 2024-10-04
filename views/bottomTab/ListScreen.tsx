@@ -69,23 +69,25 @@ const ListScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <DateTimeRender
-          selectedDate={selectedDate}
-          handleDateChange={handleDateChange}
-          selectedMonth={selectedMonth}
-          setSelectedMonth={setSelectedMonth}
-        />
-        <Main
-          selectedDate={selectedDate}
-          selectedMonth={selectedMonth}
-          isChangeable={
-            selectedMonth === 'current' &&
-            selectedDate >= today &&
-            selectedDate - today < 4
-          }
-          renderData={renderData}
-          setChange={setRenderData}
-        />
+        <View style={{flex: 1, marginBottom: vh(2)}}>
+          <DateTimeRender
+            selectedDate={selectedDate}
+            handleDateChange={handleDateChange}
+            selectedMonth={selectedMonth}
+            setSelectedMonth={setSelectedMonth}
+          />
+          <Main
+            selectedDate={selectedDate}
+            selectedMonth={selectedMonth}
+            isChangeable={
+              selectedMonth === 'current' &&
+              selectedDate >= today &&
+              selectedDate - today < 4
+            }
+            renderData={renderData}
+            setChange={setRenderData}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

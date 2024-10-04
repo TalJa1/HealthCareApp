@@ -57,6 +57,12 @@ export interface CuztomizeMainProps {
   setCurrentTask: React.Dispatch<React.SetStateAction<TaskProps[]>>;
   additionTask: TaskProps[];
   setAdditionTask: React.Dispatch<React.SetStateAction<TaskProps[]>>;
+  cancelTasks: number[];
+  setCancelTasks: React.Dispatch<React.SetStateAction<number[]>>;
+  moveTasks: number[];
+  setMoveTasks: React.Dispatch<React.SetStateAction<number[]>>;
+  selectedTab: 'current' | 'list';
+  setSelectedTab: React.Dispatch<React.SetStateAction<'current' | 'list'>>;
 }
 
 export interface TabRenderListProps {

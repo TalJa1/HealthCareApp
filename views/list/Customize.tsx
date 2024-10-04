@@ -31,6 +31,9 @@ const Customize = () => {
   useStatusBar('#EAECF5');
   const [currentTask, setCurrentTask] = useState<TaskProps[]>([]);
   const [additionTask, setAdditionTask] = useState<TaskProps[]>([]);
+  const [cancelTasks, setCancelTasks] = useState<number[]>([]);
+  const [moveTasks, setMoveTasks] = useState<number[]>([]);
+  const [selectedTab, setSelectedTab] = useState<'current' | 'list'>('current');
 
   const fetchAddtionTask = async () => {
     await loadData<TaskProps[]>(
@@ -69,19 +72,42 @@ const Customize = () => {
     }, []),
   );
 
+  const isSaveButtonDisabled = () => {
+    if (selectedTab === 'current') {
+      return cancelTasks.length === 0;
+    } else if (selectedTab === 'list') {
+      return moveTasks.length === 0;
+    }
+    return true;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <View style={{flex: 1, paddingHorizontal: vw(5)}}>
+        <View style={{flex: 1, paddingHorizontal: vw(5), marginBottom: vh(2)}}>
           <Header />
           <MainContent
             additionTask={additionTask}
             setAdditionTask={setAdditionTask}
             currentTask={currentTask}
             setCurrentTask={setCurrentTask}
+            cancelTasks={cancelTasks}
+            setCancelTasks={setCancelTasks}
+            moveTasks={moveTasks}
+            setMoveTasks={setMoveTasks}
+            setSelectedTab={setSelectedTab}
+            selectedTab={selectedTab}
           />
         </View>
       </ScrollView>
+      <View style={styles.btnSaveContainer}>
+        <TouchableOpacity
+          disabled={isSaveButtonDisabled()}
+          style={[styles.btnSave, centerAll]}>
+          {doubleSaveIcon(vw(6), vw(6))}
+          <Text style={styles.btnSaveText}> Save changes</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -89,11 +115,13 @@ const Customize = () => {
 const MainContent: React.FC<CuztomizeMainProps> = ({
   currentTask,
   additionTask,
+  cancelTasks,
+  setCancelTasks,
+  moveTasks,
+  setMoveTasks,
+  selectedTab,
+  setSelectedTab,
 }) => {
-  const [selectedTab, setSelectedTab] = useState<'current' | 'list'>('current');
-  const [cancelTasks, setCancelTasks] = useState<number[]>([]);
-  const [moveTasks, setMoveTasks] = useState<number[]>([]);
-
   return (
     <View style={styles.mainContainer}>
       <View style={styles.tabContainer}>
@@ -306,5 +334,20 @@ const styles = StyleSheet.create({
     height: vw(3),
     borderRadius: vw(2),
     backgroundColor: 'white',
+  },
+  btnSaveContainer: {
+    backgroundColor: 'white',
+    paddingVertical: vh(2),
+    paddingHorizontal: vw(5),
+  },
+  btnSave: {
+    backgroundColor: '#2D31A6',
+    paddingVertical: vh(1.5),
+    borderRadius: 6,
+    flexDirection: 'row',
+  },
+  btnSaveText: {
+    color: '#FFFFFF',
+    fontSize: 16,
   },
 });
