@@ -500,3 +500,14 @@ export function getCurrentMonthAndDate(): string {
   const date = today.getDate().toString().padStart(2, '0');
   return `${month}${date}`;
 }
+
+export function getCurrentDayOfWeekAndDate(): string {
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const today = new Date();
+
+  const dayOfWeek = daysOfWeek[today.getDay()];
+  const month = (today.getMonth() + 1).toString(); // Months are zero-based
+  const date = today.getDate().toString();
+
+  return `${dayOfWeek}, ${month}/${date}`;
+}
