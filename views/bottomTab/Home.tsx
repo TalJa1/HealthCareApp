@@ -146,14 +146,29 @@ const Banner: React.FC<{data: TaskProps[]}> = ({data}) => {
           <Text style={styles.buttonText}>Check all tasks</Text>
         </TouchableOpacity>
       </View>
-      <Image
-        style={styles.bannerBackImg}
-        source={require('../../assets/home/bannerBack.png')}
-      />
-      <Image
-        style={styles.bannerImg}
-        source={require('../../assets/home/footballer.png')}
-      />
+      {progess > 0 ? (
+        <>
+          <Image
+            style={styles.bannerBackImg}
+            source={require('../../assets/home/bannerBack1.png')}
+          />
+          <Image
+            style={styles.bannerImg}
+            source={require('../../assets/home/footballer1.png')}
+          />
+        </>
+      ) : (
+        <>
+          <Image
+            style={styles.bannerBackImg}
+            source={require('../../assets/home/bannerBack.png')}
+          />
+          <Image
+            style={styles.bannerImg}
+            source={require('../../assets/home/footballer.png')}
+          />
+        </>
+      )}
     </View>
   );
 };
