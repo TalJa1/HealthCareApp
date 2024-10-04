@@ -126,14 +126,22 @@ const MainContent: React.FC<CuztomizeMainProps> = ({
             <Text style={styles.mainCountText}>
               Cancel ( {cancelTasks.length} ) task
             </Text>
-            <TabRender data={currentTask} setCount={setCancelTasks} />
+            <TabRender
+              data={currentTask}
+              setCount={setCancelTasks}
+              count={cancelTasks}
+            />
           </View>
         ) : (
           <View>
             <Text style={styles.mainCountText}>
               Move ( {moveTasks.length} ) to your tasks
             </Text>
-            <TabRender data={additionTask} setCount={setMoveTasks} />
+            <TabRender
+              data={additionTask}
+              setCount={setMoveTasks}
+              count={moveTasks}
+            />
           </View>
         )}
       </View>
@@ -141,7 +149,7 @@ const MainContent: React.FC<CuztomizeMainProps> = ({
   );
 };
 
-const TabRender: React.FC<TabRenderListProps> = ({data, setCount}) => {
+const TabRender: React.FC<TabRenderListProps> = ({data, setCount, count}) => {
   const handleCount = (index: number) => {
     setCount(prev => {
       if (prev.includes(index)) {
@@ -155,6 +163,7 @@ const TabRender: React.FC<TabRenderListProps> = ({data, setCount}) => {
   return (
     <View style={{rowGap: vh(2), marginTop: vh(2)}}>
       {data.map((item, index) => {
+        const isSelected = count.includes(index);
         return (
           <View key={index} style={styles.tabRenderContainer}>
             <View style={styles.tabLeftGroup}>
@@ -166,8 +175,13 @@ const TabRender: React.FC<TabRenderListProps> = ({data, setCount}) => {
             </View>
             <TouchableOpacity
               onPress={() => handleCount(index)}
-              style={styles.tabBtn}
-            />
+              style={[
+                styles.tabBtn,
+                isSelected && styles.tabBtnSelected,
+                centerAll,
+              ]}>
+              {isSelected && <View style={styles.tabBtnInnerCircle} />}
+            </TouchableOpacity>
           </View>
         );
       })}
@@ -282,5 +296,15 @@ const styles = StyleSheet.create({
     borderRadius: vw(25),
     borderColor: '#717BBC',
     borderWidth: 2,
+  },
+  tabBtnSelected: {
+    backgroundColor: '#363F72',
+    borderColor: '#363F72',
+  },
+  tabBtnInnerCircle: {
+    width: vw(3),
+    height: vw(3),
+    borderRadius: vw(2),
+    backgroundColor: 'white',
   },
 });
