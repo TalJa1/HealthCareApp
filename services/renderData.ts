@@ -526,3 +526,74 @@ export function getCurrentDayOfWeekAndDate(): string {
 
   return `${dayOfWeek}, ${month}/${date}`;
 }
+
+export const NewsListData = [
+  {
+    title: 'Prevention and Treatment of Depression',
+    post: '2 days ago',
+    description:
+      'Depression is a common psychological disorder that affects emotions, thoughts, and behaviors. To prevent and treat depression, consider the following steps.',
+    img: require('../assets/news/news3.png'),
+    prevention: [
+      'Maintain a healthy lifestyle by eating a balanced diet, exercising regularly, and getting enough sleep.',
+      'Manage stress: Learn to cope with stress through relaxation activities, meditation, or yoga.',
+      'Build a support network: Stay connected with family, friends, and the community for emotional support.',
+    ],
+    treatment: [
+      'Psychotherapy: Talk therapy can help you understand and manage your emotions and behaviors.',
+      'Pharmacotherapy: Antidepressants may be prescribed by a doctor to manage symptoms.',
+      'Continuous monitoring and support: Adhere to treatment and ensure ongoing support from family and healthcare providers.',
+    ],
+  },
+  {
+    title: 'Prevention and Treatment of Insomnia',
+    post: '5 days ago',
+    description:
+      'Insomnia is a sleep disorder that can affect your quality of life. To prevent and treat insomnia, consider the following steps.',
+    img: require('../assets/news/news2.png'),
+    prevention: [
+      'Maintain a regular sleep schedule: Go to bed and wake up at the same time every day.',
+      'Create a restful environment: Ensure your bedroom is quiet, dark, and cool.',
+      'Avoid stimulants: Limit caffeine and nicotine intake, especially before bedtime.',
+    ],
+    treatment: [
+      'Cognitive Behavioral Therapy for Insomnia (CBT-I): A structured program that helps you identify and replace thoughts and behaviors that cause or worsen sleep problems.',
+      'Medications: Prescription sleep aids may be used for short-term treatment.',
+      'Lifestyle changes: Incorporate relaxation techniques, such as deep breathing and progressive muscle relaxation, into your daily routine.',
+    ],
+  },
+  {
+    title: 'Prevention and Treatment of Measles',
+    post: '1 week ago',
+    description:
+      'Measles is a highly contagious viral infection. To prevent and treat measles, consider the following steps.',
+    img: require('../assets/news/news1.png'),
+    prevention: [
+      'Vaccination: Ensure you and your children receive the MMR (measles, mumps, rubella) vaccine.',
+      'Avoid contact: Stay away from individuals who are infected with measles.',
+      'Maintain good hygiene: Wash your hands frequently and avoid touching your face.',
+    ],
+    treatment: [
+      'Rest and hydration: Get plenty of rest and drink fluids to stay hydrated.',
+      'Fever management: Use fever reducers, such as acetaminophen or ibuprofen, as directed by a healthcare provider.',
+      'Monitor for complications: Seek medical attention if you experience severe symptoms or complications, such as pneumonia or encephalitis.',
+    ],
+  },
+  {
+    title: 'Prevention and Treatment of Dengue Fever',
+    post: '2 weeks ago',
+    description:
+      'Dengue fever is a mosquito-borne viral infection. To prevent and treat dengue fever, consider the following steps.',
+    img: require('../assets/news/news4.png'),
+    prevention: [
+      'Avoid mosquito bites: Use insect repellent, wear long-sleeved clothing, and use mosquito nets.',
+      'Eliminate mosquito breeding sites: Remove standing water from containers, such as flower pots and buckets.',
+      'Stay informed: Be aware of dengue outbreaks in your area and take precautions.',
+    ],
+    treatment: [
+      'Rest and hydration: Get plenty of rest and drink fluids to stay hydrated.',
+      'Pain relief: Use pain relievers, such as acetaminophen, to manage symptoms. Avoid aspirin and nonsteroidal anti-inflammatory drugs (NSAIDs).',
+      'Seek medical attention: If you experience severe symptoms, such as severe abdominal pain, persistent vomiting, or bleeding, seek medical care immediately.',
+    ],
+  },
+];
