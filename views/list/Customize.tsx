@@ -103,9 +103,24 @@ const Customize = () => {
       <View style={styles.btnSaveContainer}>
         <TouchableOpacity
           disabled={isSaveButtonDisabled()}
-          style={[styles.btnSave, centerAll]}>
-          {doubleSaveIcon(vw(6), vw(6))}
-          <Text style={styles.btnSaveText}> Save changes</Text>
+          style={[
+            isSaveButtonDisabled() ? styles.btnSave : styles.btnSaveActive,
+            centerAll,
+          ]}>
+          {doubleSaveIcon(
+            vw(6),
+            vw(6),
+            isSaveButtonDisabled() ? '#98A2B3' : '#FCFCFD',
+          )}
+          <Text
+            style={[
+              isSaveButtonDisabled()
+                ? styles.btnSaveText
+                : styles.btnSaveTextActive,
+            ]}>
+            {' '}
+            Save changes
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -340,14 +355,25 @@ const styles = StyleSheet.create({
     paddingVertical: vh(2),
     paddingHorizontal: vw(5),
   },
-  btnSave: {
-    backgroundColor: '#2D31A6',
+  btnSaveActive: {
+    backgroundColor: '#444CE7',
     paddingVertical: vh(1.5),
-    borderRadius: 6,
+    borderRadius: 8,
     flexDirection: 'row',
   },
+  btnSave: {
+    borderColor: '#98A2B3',
+    borderWidth: 1,
+    paddingVertical: vh(1.5),
+    borderRadius: 8,
+    flexDirection: 'row',
+  },
+  btnSaveTextActive: {
+    color: '#FCFCFD',
+    fontSize: 16,
+  },
   btnSaveText: {
-    color: '#FFFFFF',
+    color: '#98A2B3',
     fontSize: 16,
   },
 });
