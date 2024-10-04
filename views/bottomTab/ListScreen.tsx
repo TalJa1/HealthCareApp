@@ -77,6 +77,9 @@ const Main: React.FC<ListScreenMainProps> = ({isChangeable, selectedDate}) => {
         <Text style={{color: '#444CE7', fontSize: 14, fontWeight: '600'}}>
           2 of 6 completed
         </Text>
+        <View>
+          
+        </View>
       </View>
     </View>
   );

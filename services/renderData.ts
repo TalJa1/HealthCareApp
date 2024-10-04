@@ -415,3 +415,42 @@ export const pastListTaskData = [
     isCompleted: true,
   },
 ];
+
+export const futureListTaskData = [
+  {
+    title: 'Walking',
+    description: '20–30 minutes',
+    img: require('../assets/home/excercise/walking.png'),
+    isCompleted: false,
+  },
+  {
+    title: 'Low-FODMAP Fruits',
+    description: '1–2 servings',
+    img: require('../assets/home/food/fruit.png'),
+    isCompleted: false,
+  },
+  {
+    title: 'Yoga',
+    description: '20–30 minutes',
+    img: require('../assets/home/excercise/yoga.png'),
+    isCompleted: false,
+  },
+  {
+    title: 'Oats',
+    description: '1/2–1 cup',
+    img: require('../assets/home/food/oats.png'),
+    isCompleted: false,
+  },
+  {
+    title: 'Deep Breathing',
+    description: '5–10 minutes',
+    img: require('../assets/home/excercise/deepBreathing.png'),
+    isCompleted: false,
+  },
+  {
+    title: 'Lean proteins',
+    description: '100–150g/meal',
+    img: require('../assets/home/food/meat.png'),
+    isCompleted: false,
+  },
+];
