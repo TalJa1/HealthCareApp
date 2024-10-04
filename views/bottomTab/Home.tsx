@@ -31,11 +31,9 @@ const Home = () => {
   const fetchData = async () => {
     await loadData<TaskProps[]>(`TasksStorage${getCurrentMonthAndDate()}`)
       .then(data => {
-        console.log(data);
         setTaskData(data);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         saveData(
           `TasksStorage${getCurrentMonthAndDate()}`,
           currentListTaskData,
@@ -114,6 +112,7 @@ const DiseaseCatergory: React.FC = () => {
 
 const Banner: React.FC<{data: TaskProps[]}> = ({data}) => {
   const taskDone = data.filter(task => task.isCompleted === true).length;
+  console.log('taskDone', taskDone);
 
   const progress = taskDone / data.length;
 

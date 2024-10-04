@@ -49,11 +49,9 @@ const ListScreen = () => {
   const fetchData = async () => {
     await loadData<TaskProps[]>(`TasksStorage${getCurrentMonthAndDate()}`)
       .then(data => {
-        console.log(data);
         setRenderData(data);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         saveData(
           `TasksStorage${getCurrentMonthAndDate()}`,
           currentListTaskData,
