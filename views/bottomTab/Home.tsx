@@ -22,7 +22,8 @@ import {
 import LearnMoreComponent from '../../components/home/LearnMoreComponent';
 import {loadData, saveData} from '../../services/storage';
 import {TaskProps} from '../../services/typeProps';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const Home = () => {
   useStatusBar('#EAECF5');
@@ -111,6 +112,7 @@ const DiseaseCatergory: React.FC = () => {
 };
 
 const Banner: React.FC<{data: TaskProps[]}> = ({data}) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [progess, setProgess] = useState(0);
   const taskDone = data.filter(task => task.isCompleted === true).length;
 
@@ -142,7 +144,9 @@ const Banner: React.FC<{data: TaskProps[]}> = ({data}) => {
             </Text>
           </View>
         </View>
-        <TouchableOpacity style={[styles.button, centerAll]}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Customize')}
+          style={[styles.button, centerAll]}>
           <Text style={styles.buttonText}>Check all tasks</Text>
         </TouchableOpacity>
       </View>
