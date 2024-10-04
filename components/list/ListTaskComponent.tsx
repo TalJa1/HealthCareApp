@@ -24,10 +24,16 @@ const ListTaskComponent: React.FC<{data: TaskProps[]}> = ({data}) => {
                   <Text style={styles.description}>{item.description}</Text>
                 </View>
               </View>
-              <View style={[centerAll, styles.completeContainer]}>
-                {completeIcon(vw(6), vw(6))}
-                <Text style={styles.completeTxt}>Complete</Text>
-              </View>
+              {isPast ? (
+                <View style={[centerAll, styles.completeContainer]}>
+                  {completeIcon(vw(6), vw(6))}
+                  <Text style={styles.completeTxt}>Complete</Text>
+                </View>
+              ) : (
+                <View style={[styles.markAsCompleteContainer, centerAll]}>
+                  <Text style={styles.markAsCompleteTxt}>Mark as Complete</Text>
+                </View>
+              )}
             </View>
           );
         })}
@@ -43,6 +49,13 @@ const styles = StyleSheet.create({
   taskContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: '#EEF4FF',
+    paddingVertical: vh(1),
+    paddingHorizontal: vw(3),
+    borderRadius: 12,
+    borderBottomWidth: 3,
+    borderRightWidth: 3,
+    borderColor: '#A4BCFD',
   },
   img: {
     width: vw(12),
@@ -68,5 +81,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#E5F7F0',
     borderRadius: vw(2),
     paddingHorizontal: vw(3),
+  },
+  markAsCompleteContainer: {
+    width: vw(20),
+    borderRadius: 6,
+    borderColor: '#E4E7EC',
+    borderWidth: 1,
+  },
+  markAsCompleteTxt: {
+    textAlign: 'center',
+    color: '#98A2B3',
+    fontSize: 12,
+    fontWeight: '400',
   },
 });
