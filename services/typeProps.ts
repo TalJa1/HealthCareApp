@@ -51,3 +51,10 @@ export interface TaskProps {
   img: any; // Use appropriate type if known, e.g., ImageSourcePropType for React Native
   isCompleted: boolean;
 }
+
+export interface CuztomizeMainProps {
+  currentTask: TaskProps[];
+  setCurrentTask: React.Dispatch<React.SetStateAction<TaskProps[]>>;
+  additionTask: TaskProps[];
+  setAdditionTask: React.Dispatch<React.SetStateAction<TaskProps[]>>;
+}

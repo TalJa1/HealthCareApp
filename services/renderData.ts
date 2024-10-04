@@ -455,6 +455,21 @@ export const currentListTaskData = [
   },
 ];
 
+export const additionListTask = [
+  {
+    title: 'Tai Chi',
+    description: '20–30 minutes',
+    img: require('../assets/home/excercise/deepBreathing.png'),
+    isCompleted: false,
+  },
+  {
+    title: 'Protein-Rich Foods',
+    description: '1–2 servings',
+    img: require('../assets/home/food/milk.png'),
+    isCompleted: false,
+  },
+];
+
 export const futureListTaskData = [
   {
     title: 'Walking',
