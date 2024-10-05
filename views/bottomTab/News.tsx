@@ -11,7 +11,7 @@ import React, {useCallback, useState} from 'react';
 import {main, vh, vw} from '../../services/styleSheets';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
-import {clipLabelIcon, menuIcon} from '../../assets/svgXml';
+import {clipLabelIcon, followIcon, menuIcon} from '../../assets/svgXml';
 import {NewsItem, NewsRenderProps} from '../../services/typeProps';
 import {loadData, saveData} from '../../services/storage';
 import {getCurrentMonthAndDate, NewsListData} from '../../services/renderData';
@@ -90,11 +90,18 @@ const MainContent: React.FC = () => {
 };
 
 const NewsRender: React.FC<NewsRenderProps> = ({data, showButton}) => {
+  const handlePress = (index: number) => {
+    console.log('Pressed', index);
+  };
+
   return (
     <View style={{rowGap: vh(2)}}>
       {data.map((item, index) => {
         return (
-          <TouchableOpacity key={index} style={styles.newsRenderContainer}>
+          <TouchableOpacity
+            onPress={() => handlePress(index)}
+            key={index}
+            style={styles.newsRenderContainer}>
             <View style={styles.clipContainer}>
               {clipLabelIcon(vw(5), vw(5))}
               <Text style={styles.clipTxt}>Label</Text>
@@ -108,15 +115,28 @@ const NewsRender: React.FC<NewsRenderProps> = ({data, showButton}) => {
               <View
                 style={{
                   flexDirection: 'row',
-                  columnGap: vw(2),
+                  justifyContent: 'space-between',
                   alignItems: 'center',
-                  marginTop: vh(1),
                 }}>
-                <Image
-                  style={styles.newsRenderAvatar}
-                  source={require('../../assets/home/avatar.png')}
-                />
-                <Text style={styles.newsRenderAuthor}>Author</Text>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    columnGap: vw(2),
+                    alignItems: 'center',
+                    marginTop: vh(1),
+                  }}>
+                  <Image
+                    style={styles.newsRenderAvatar}
+                    source={require('../../assets/home/avatar.png')}
+                  />
+                  <Text style={styles.newsRenderAuthor}>Author</Text>
+                </View>
+                {showButton && (
+                  <TouchableOpacity style={styles.followBtn}>
+                    {followIcon(vw(5), vw(5))}
+                    <Text style={styles.followBtnTxt}>Follow</Text>
+                  </TouchableOpacity>
+                )}
               </View>
             </View>
           </TouchableOpacity>
@@ -224,6 +244,19 @@ const styles = StyleSheet.create({
   clipTxt: {
     fontSize: 12,
     color: '#FCFCFD',
+    fontWeight: '600',
+  },
+  followBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: vw(2),
+    backgroundColor: '#2D31A6',
+    borderRadius: 12,
+    columnGap: vw(1),
+  },
+  followBtnTxt: {
+    color: '#FCFCFD',
+    fontSize: 12,
     fontWeight: '600',
   },
 });
