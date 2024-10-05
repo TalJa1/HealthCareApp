@@ -50,7 +50,7 @@ const Login = () => {
           <View style={{rowGap: vh(1), marginBottom: vh(5)}}>
             <BtnLayout
               title="Sign In"
-              btnColor="#293056"
+              btnColor="#2D31A6"
               textColor="white"
               isFinishOnboarding={isFinishOnboarding}
             />

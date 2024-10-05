@@ -84,7 +84,7 @@ const Onboarding = () => {
                   {
                     position: 'absolute',
                     bottom: vh(5),
-                    backgroundColor: '#293056',
+                    backgroundColor: '#2D31A6',
                     width: vw(90),
                     borderRadius: 44,
                     paddingVertical: vh(1.5),
