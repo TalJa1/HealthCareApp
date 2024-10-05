@@ -23,6 +23,8 @@ import UserScreen from './views/bottomTab/UserScreen';
 import Detail from './views/home/Detail';
 import Customize from './views/list/Customize';
 import NewsDetail from './views/news/NewsDetail';
+import Login from './views/init/Login';
+import Onboarding from './views/init/Onboarding';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -148,6 +150,18 @@ const App = () => {
           options={{headerShown: false}}
         />
         {/* end news navigation */}
+        {/* init */}
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="Onboarding"
+          component={Onboarding}
+          options={{headerShown: false}}
+        />
+        {/* end init */}
       </Stack.Navigator>
     </NavigationContainer>
   );

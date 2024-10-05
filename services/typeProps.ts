@@ -102,3 +102,10 @@ export interface RenderLayoutInterface {
   title: string;
   renderData: RenderLayoutItem[];
 }
+
+export interface LoginBtnProps {
+  btnColor: string;
+  textColor: string;
+  title: string;
+  icon?: JSX.Element;
+}
