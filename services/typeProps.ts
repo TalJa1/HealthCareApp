@@ -92,3 +92,13 @@ export interface userInforProps {
   height: number;
   img: any;
 }
+
+export interface RenderLayoutItem {
+  icon: JSX.Element;
+  title: string;
+}
+
+export interface RenderLayoutInterface {
+  title: string;
+  renderData: RenderLayoutItem[];
+}

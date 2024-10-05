@@ -1,3 +1,17 @@
+import {
+  aboutUsIcon,
+  callIcon,
+  darkModeIcon,
+  doubleSaveIcon,
+  FAQsIcon,
+  followFaceIcon,
+  inforIcon,
+  noiceIcon,
+  notiIcon,
+  RateIcon,
+} from '../assets/svgXml';
+import {vw} from './styleSheets';
+
 export const DiseaseCategoriesTabs = [
   {
     img: require('../assets/home/stomach.png'),
@@ -602,10 +616,62 @@ export const NewsListData = [
   },
 ];
 
-export const userInfor = {
+export const UserInfor = {
   name: 'Nguyen Dinh Minh Anh',
   age: 18,
   weight: 52,
   height: 165,
   img: require('../assets/home/avatar.png'),
 };
+
+export const Self = [
+  {
+    icon: inforIcon(vw(7), vw(7)),
+    title: 'Account information',
+  },
+  {
+    icon: doubleSaveIcon(vw(7), vw(7)),
+    title: 'Save post',
+  },
+];
+
+export const SystemSetting = [
+  {
+    icon: darkModeIcon(vw(7), vw(7)),
+    title: 'Dark mode',
+  },
+  {
+    icon: notiIcon(vw(7), vw(7)),
+    title: 'Notification',
+  },
+  {
+    icon: noiceIcon(vw(7), vw(7)),
+    title: 'Sound',
+  },
+];
+
+export const HelpCenter = [
+  {
+    icon: aboutUsIcon(vw(7), vw(7)),
+    title: 'Who we are',
+  },
+  {
+    icon: FAQsIcon(vw(7), vw(7)),
+    title: 'FAQs',
+  },
+  {
+    icon: callIcon(vw(7), vw(7)),
+    title: 'Contact',
+  },
+];
+
+export const OtherInfor = [
+  {
+    icon: followFaceIcon(vw(7), vw(7)),
+    title: 'Follow us',
+  },
+  {
+    icon: RateIcon(vw(7), vw(7)),
+    title: 'Rate us',
+  },
+];
