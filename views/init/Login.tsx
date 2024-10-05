@@ -15,7 +15,7 @@ import {loadData} from '../../services/storage';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {LoginBtnProps} from '../../services/typeProps';
-import { appleIcon, googleIcon } from '../../assets/svgXml';
+import {appleIcon, googleIcon} from '../../assets/svgXml';
 
 const Login = () => {
   useStatusBar('#EAECF5');
@@ -63,7 +63,12 @@ const Login = () => {
               <Text style={{color: '#4C4C4C'}}>Need an account? </Text>
               <TouchableOpacity>
                 <Text
-                  style={{color: '#4C4C4C', textDecorationLine: 'underline'}}>
+                  style={{
+                    color: '#4C4C4C',
+                    textDecorationLine: 'underline',
+                    fontWeight: '500',
+                    fontSize: 16,
+                  }}>
                   Sign up
                 </Text>
               </TouchableOpacity>
