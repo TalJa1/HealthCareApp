@@ -226,6 +226,8 @@ const styles = StyleSheet.create({
     height: vw(25),
     borderRadius: vw(30),
     alignSelf: 'center',
+    borderWidth: 4,
+    borderColor: '#E4E7EC',
   },
   userName: {
     color: '#1D2939',
