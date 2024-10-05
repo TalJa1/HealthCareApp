@@ -25,11 +25,50 @@ const NewsDetail = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <TopRender dataIndex={dataIndex} />
-        <View style={{flex: 1, paddingHorizontal: vw(5), marginTop: vh(2)}}>
-          <Text>NewsDetail</Text>
+        <View style={{flex: 1, paddingHorizontal: vw(5), marginBottom: vh(2)}}>
+          <MainContent dataIndex={dataIndex} />
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const MainContent: React.FC<{dataIndex: number}> = ({dataIndex}) => {
+  const renderData = NewsListData[dataIndex];
+
+  return (
+    <View>
+      <Text style={styles.mainTitle}>{renderData.title}</Text>
+      <Text style={styles.mainPost}>{renderData.post}</Text>
+      <View style={styles.mainsolidLine} />
+      <Text style={styles.mainDescription}>{renderData.description}</Text>
+      <View>
+        <Text style={styles.mainPrevention}>Prevention:</Text>
+        <View>
+          {renderData.prevention.map((item, index) => {
+            return (
+              <View key={index} style={styles.listItem}>
+                <Text style={styles.bulletPoint}>•</Text>
+                <Text style={styles.preventionTxt}>{item}</Text>
+              </View>
+            );
+          })}
+        </View>
+      </View>
+      <View>
+        <Text style={styles.mainPrevention}>Treatment:</Text>
+        <View>
+          {renderData.treatment.map((item, index) => {
+            return (
+              <View key={index} style={styles.listItem}>
+                <Text style={styles.bulletPoint}>•</Text>
+                <Text style={styles.preventionTxt}>{item}</Text>
+              </View>
+            );
+          })}
+        </View>
+      </View>
+    </View>
   );
 };
 
@@ -78,9 +117,56 @@ const styles = StyleSheet.create({
   },
   topRenderContainer: {
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 5},
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    elevation: 5, // For Android
+    shadowOffset: {width: 0, height: 10}, // Increased shadow height for more depth
+    shadowOpacity: 0.25, // Reduced opacity for a subtle shadow
+    shadowRadius: 10, // Smoothened shadow
+    elevation: 10, // Enhanced elevation for Android
+    backgroundColor: '#fff', // Background color for clarity
+    borderRadius: vw(2), // Match image corner rounding
+    marginBottom: vh(2), // Added margin to avoid shadow overlap with other components
+  },
+  // Main Content
+  mainTitle: {
+    color: '#2D31A6',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  mainPost: {
+    color: '#667085',
+    fontSize: 12,
+    fontWeight: '400',
+  },
+  mainsolidLine: {
+    height: 1,
+    backgroundColor: '#667085',
+    marginVertical: vh(2),
+  },
+  mainDescription: {
+    color: '#2D31A6',
+    fontSize: 14,
+    fontWeight: '400',
+  },
+  mainPrevention: {
+    color: '#667085',
+    fontSize: 14,
+    fontWeight: '700',
+    marginVertical: vh(2),
+  },
+  preventionTxt: {
+    color: '#667085',
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 20,
+  },
+  listItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginVertical: vh(0.5),
+  },
+  bulletPoint: {
+    color: '#667085',
+    fontSize: 16,
+    fontWeight: '400',
+    marginRight: vw(2),
   },
 });
