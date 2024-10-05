@@ -601,3 +601,11 @@ export const NewsListData = [
     isFollowed: false,
   },
 ];
+
+export const userInfor = {
+  name: 'Nguyen Dinh Minh Anh',
+  age: 18,
+  weight: 52,
+  height: 165,
+  img: require('../assets/home/avatar.png'),
+};

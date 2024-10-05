@@ -84,3 +84,11 @@ export interface NewsRenderProps {
   data: NewsItem[];
   showButton: boolean;
 }
+
+export interface userInforProps {
+  name: string;
+  age: number;
+  weight: number;
+  height: number;
+  img: any;
+}
