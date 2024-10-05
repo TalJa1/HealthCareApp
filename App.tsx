@@ -22,6 +22,7 @@ import News from './views/bottomTab/News';
 import UserScreen from './views/bottomTab/UserScreen';
 import Detail from './views/home/Detail';
 import Customize from './views/list/Customize';
+import NewsDetail from './views/news/NewsDetail';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -140,6 +141,13 @@ const App = () => {
           options={{headerShown: false}}
         />
         {/* end list navigation */}
+        {/* news navigation */}
+        <Stack.Screen
+          name="NewsDetail"
+          component={NewsDetail}
+          options={{headerShown: false}}
+        />
+        {/* end news navigation */}
       </Stack.Navigator>
     </NavigationContainer>
   );

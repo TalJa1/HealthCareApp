@@ -15,7 +15,8 @@ import {clipLabelIcon, followIcon, menuIcon} from '../../assets/svgXml';
 import {NewsItem, NewsRenderProps} from '../../services/typeProps';
 import {loadData, saveData} from '../../services/storage';
 import {getCurrentMonthAndDate, NewsListData} from '../../services/renderData';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const News = () => {
   useStatusBar('#EAECF5');
@@ -90,8 +91,9 @@ const MainContent: React.FC = () => {
 };
 
 const NewsRender: React.FC<NewsRenderProps> = ({data, showButton}) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const handlePress = (index: number) => {
-    console.log('Pressed', index);
+    navigation.navigate('NewsDetail', {dataIndex: index});
   };
 
   return (
