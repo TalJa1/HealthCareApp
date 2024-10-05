@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,7 +11,7 @@ import React, {useCallback, useState} from 'react';
 import {main, vh, vw} from '../../services/styleSheets';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
-import {menuIcon} from '../../assets/svgXml';
+import {clipLabelIcon, menuIcon} from '../../assets/svgXml';
 import {NewsItem, NewsRenderProps} from '../../services/typeProps';
 import {loadData, saveData} from '../../services/storage';
 import {getCurrentMonthAndDate, NewsListData} from '../../services/renderData';
@@ -88,8 +89,41 @@ const MainContent: React.FC = () => {
   );
 };
 
-const NewsRender: React.FC<NewsRenderProps> = () => {
-  return <View></View>;
+const NewsRender: React.FC<NewsRenderProps> = ({data, showButton}) => {
+  return (
+    <View style={{rowGap: vh(2)}}>
+      {data.map((item, index) => {
+        return (
+          <TouchableOpacity key={index} style={styles.newsRenderContainer}>
+            <View style={styles.clipContainer}>
+              {clipLabelIcon(vw(5), vw(5))}
+              <Text style={styles.clipTxt}>Label</Text>
+            </View>
+            <Image source={item.img} style={styles.newsRenderImg} />
+            <View style={styles.newsRenderDataContainer}>
+              <Text numberOfLines={1} style={styles.newsRenderTitle}>
+                {item.title}
+              </Text>
+              <Text style={styles.newsRenderPost}>{item.post}</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  columnGap: vw(2),
+                  alignItems: 'center',
+                  marginTop: vh(1),
+                }}>
+                <Image
+                  style={styles.newsRenderAvatar}
+                  source={require('../../assets/home/avatar.png')}
+                />
+                <Text style={styles.newsRenderAuthor}>Author</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
 };
 
 const Header: React.FC = () => {
@@ -139,5 +173,57 @@ const styles = StyleSheet.create({
   },
   content: {
     marginTop: vh(2),
+  },
+  // News Render
+  newsRenderContainer: {
+    backgroundColor: '#F5F6FA',
+    borderRadius: 12,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5, // For Android
+  },
+  newsRenderDataContainer: {
+    paddingHorizontal: vw(3),
+    paddingVertical: vh(2),
+  },
+  newsRenderImg: {
+    width: '100%',
+    height: vh(20),
+    resizeMode: 'cover',
+  },
+  newsRenderTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#2D31A6',
+  },
+  newsRenderPost: {
+    fontSize: 12,
+    color: '#667085',
+  },
+  newsRenderAvatar: {
+    width: vw(6),
+    height: vw(6),
+  },
+  newsRenderAuthor: {
+    fontSize: 12,
+    color: '#1D2939',
+  },
+  clipContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#242F4199',
+    padding: vw(2),
+    position: 'absolute',
+    zIndex: 2,
+    borderBottomRightRadius: 12,
+    columnGap: vw(1),
+  },
+  clipTxt: {
+    fontSize: 12,
+    color: '#FCFCFD',
+    fontWeight: '600',
   },
 });
