@@ -24,7 +24,6 @@ const Onboarding = () => {
     age: '',
     height: '',
     weight: '',
-    img: require('../../assets/home/avatar.png'),
   });
 
   useEffect(() => {

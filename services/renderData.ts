@@ -621,7 +621,6 @@ export const UserInfor = {
   age: 18,
   weight: 52,
   height: 165,
-  img: require('../assets/home/avatar.png'),
 };
 
 export const Self = [

@@ -90,7 +90,6 @@ export interface userInforProps {
   age: number;
   weight: number;
   height: number;
-  img: any;
 }
 
 export interface RenderLayoutItem {
@@ -112,14 +111,13 @@ export interface LoginBtnProps {
 
 export interface OnboardingInterfaceProps {
   setIsNext: React.Dispatch<React.SetStateAction<boolean>>;
-  formData: {name: string; age: string; height: string; weight: string; img: any};
+  formData: {name: string; age: string; height: string; weight: string};
   setFormData: React.Dispatch<
     React.SetStateAction<{
       name: string;
       age: string;
       height: string;
       weight: string;
-      img: any;
     }>
   >;
 }

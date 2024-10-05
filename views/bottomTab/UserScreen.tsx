@@ -32,7 +32,6 @@ const UserScreen = () => {
     age: 18,
     weight: 52,
     height: 165,
-    img: require('../../assets/home/avatar.png'),
   });
 
   const fetchData = async () => {
@@ -67,7 +66,7 @@ const UserScreen = () => {
 const RenderUserInfor: React.FC<{user: userInforProps}> = ({user}) => {
   return (
     <View>
-      <Image style={styles.userImg} source={user.img} />
+      <Image style={styles.userImg} source={require('../../assets/home/avatar.png')} />
       <Text style={styles.userName}>{user.name}</Text>
       <View
         style={{
