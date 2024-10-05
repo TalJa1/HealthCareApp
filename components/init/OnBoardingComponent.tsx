@@ -14,8 +14,8 @@ import {OnboardingComponentProps} from '../../services/typeProps';
 import {backIcon, nextIcon} from '../../assets/svgXml';
 import * as Progress from 'react-native-progress';
 import {saveData} from '../../services/storage';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const OnBoardingComponent: React.FC<OnboardingComponentProps> = ({
   title,
@@ -53,7 +53,7 @@ const StepLoader: React.FC<{
       <Progress.Bar
         progress={step}
         borderWidth={0}
-        color="#293056"
+        color="#2D31A6"
         unfilledColor="#CCCED5"
         width={vw(90)}
       />
@@ -62,15 +62,15 @@ const StepLoader: React.FC<{
           disabled={step === 0.3}
           onPress={() => {
             step === 1
-              ? setStep(parseFloat((step - 0.4).toFixed(1)))
-              : setStep(parseFloat((step - 0.3).toFixed(1)));
+              ? setStep(parseFloat((step - 0.3).toFixed(1)))
+              : setStep(parseFloat((step - 0.2).toFixed(1)));
           }}
           style={[
             styles.circleButton,
-            step === 0.3 && {backgroundColor: '#CCCED5'},
+            step === 0.3 && {backgroundColor: '#F2F4F7'},
           ]}>
           <Text style={styles.buttonText}>
-            {backIcon(vw(7), vw(7), 'white')}
+            {backIcon(vw(7), vw(7), step === 0.3 ? '#98A2B3' : '#6172F3')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -80,17 +80,17 @@ const StepLoader: React.FC<{
               saveData('onboardingFinish', 'true');
               navigation.navigate('Main');
             } else {
-              step === 0.6
-                ? setStep(parseFloat((step + 0.4).toFixed(1)))
-                : setStep(parseFloat((step + 0.3).toFixed(1)));
+              step === 0.7
+                ? setStep(parseFloat((step + 0.3).toFixed(1)))
+                : setStep(parseFloat((step + 0.2).toFixed(1)));
             }
           }}
           style={[
             styles.circleButton,
-            isNext === false && {backgroundColor: '#CCCED5'},
+            isNext === false && {backgroundColor: '#F2F4F7'},
           ]}>
           <Text style={styles.buttonText}>
-            {nextIcon(vw(7), vw(7), 'white')}
+            {nextIcon(vw(7), vw(7), isNext === false ? '#98A2B3' : '#6172F3')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -104,9 +104,9 @@ const styles = StyleSheet.create({
   container: main,
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: '400',
     marginVertical: 10,
-    color: '#293056',
+    color: '#2D31A6',
   },
   description: {
     fontSize: 16,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: '#4E5BA6',
+    backgroundColor: '#E0EAFF',
     justifyContent: 'center',
     alignItems: 'center',
   },

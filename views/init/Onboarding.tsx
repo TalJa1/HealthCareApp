@@ -12,7 +12,7 @@ import React, {useEffect, useState} from 'react';
 import {centerAll, main, vh, vw} from '../../services/styleSheets';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {saveData} from '../../services/storage';
-import { OnboardingInterfaceProps } from '../../services/typeProps';
+import {OnboardingInterfaceProps} from '../../services/typeProps';
 import OnBoardingComponent from '../../components/init/OnBoardingComponent';
 
 const Onboarding = () => {
@@ -22,8 +22,9 @@ const Onboarding = () => {
   const [formData, setFormData] = useState({
     name: '',
     age: '',
-    goal: '',
-    location: 'Hoan kiem, Hanoi',
+    height: '',
+    weight: '',
+    img: require('../../assets/home/avatar.png'),
   });
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const Onboarding = () => {
             setFormData={setFormData}
           />
         );
-      case 0.6:
+      case 0.5:
         return (
           <GetAgeView
             setIsNext={setIsNext}
@@ -48,9 +49,17 @@ const Onboarding = () => {
             setFormData={setFormData}
           />
         );
+      case 0.7:
+        return (
+          <GetHeightView
+            setIsNext={setIsNext}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        );
       case 1:
         return (
-          <WelcomeView
+          <GetWeightView
             setIsNext={setIsNext}
             formData={formData}
             setFormData={setFormData}
@@ -101,7 +110,11 @@ const Onboarding = () => {
               ? "Before jumping in, let's know each orther"
               : `Welcome ${formData.name}`
           }
-          description={step === 1 ? 'Choose a location to start' : null}
+          description={
+            step >= 0.7
+              ? 'Just a few steps to personalize your experience'
+              : null
+          }
           ui={getStepComponent()}
           isNext={isNext}
         />
@@ -110,71 +123,80 @@ const Onboarding = () => {
   );
 };
 
-const WelcomeView: React.FC<OnboardingInterfaceProps> = ({
+const GetWeightView: React.FC<OnboardingInterfaceProps> = ({
+  setIsNext,
   formData,
   setFormData,
-  setIsNext,
 }) => {
-  const [recommendLocation, setRecommendLocation] = useState([
-    'Hon Gai, Ha Long',
-    'Ngo Quyen, Hai Phong',
-    'Vu Ban, Nam Dinh',
-    'Que Vo, Bac Ninh',
-    'District 1, TP HCM',
-  ]);
-
-  const handleLocationPress = (index: number) => {
-    setFormData({...formData, location: recommendLocation[index]});
-    setRecommendLocation(prevLocations => {
-      const newLocations = [...prevLocations];
-      newLocations.splice(index, 1)[0];
-      newLocations.splice(index, 0, formData.location);
-      return newLocations;
-    });
-  };
-
   useEffect(() => {
-    if (formData.location.length > 0) {
+    if (formData.weight.length > 0) {
       setIsNext(true);
     } else {
       setIsNext(false);
     }
-  }, [formData.location, setIsNext]);
+  }, [formData.weight, setIsNext]);
 
   return (
-    <View style={{rowGap: vh(2)}}>
-      <View style={{rowGap: vh(1)}}>
-        <View
-          style={{
-            backgroundColor: '#3E3792',
-            paddingVertical: vh(1.5),
-            paddingHorizontal: vw(5),
-            borderRadius: 8,
-          }}>
-          <Text style={{color: '#FCFCFC', fontWeight: 500}}>
-            {formData.location}
-          </Text>
-        </View>
-      </View>
-      <View style={{rowGap: vh(1)}}>
-        <Text style={styles.titleColor}>Recommend for you</Text>
-        {recommendLocation.map((item, index) => {
-          return (
-            <TouchableOpacity
-              onPress={() => handleLocationPress(index)}
-              key={index}
-              style={{
-                paddingVertical: vh(1.5),
-                paddingHorizontal: vw(5),
-                borderRadius: 8,
-                borderWidth: 1,
-                borderColor: '#6E778B',
-              }}>
-              <Text style={{color: '#6E778B', fontWeight: '500'}}>{item}</Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
+    <View style={[centerAll, {rowGap: vh(2)}]}>
+      <Text style={{color: '#1D2939', fontWeight: '700', fontSize: 24}}>
+        Your Weight
+      </Text>
+      <TextInput
+        placeholder="Type here"
+        placeholderTextColor={'#6E778B'}
+        value={formData.weight}
+        keyboardType="number-pad"
+        onChangeText={text => setFormData({...formData, weight: text})}
+        style={{
+          borderWidth: 1,
+          borderColor: '#CCCED5',
+          width: '100%',
+          borderRadius: 8,
+          textAlign: 'center',
+          color: '#3E3792',
+          fontSize: 18,
+          fontWeight: '700',
+        }}
+      />
+    </View>
+  );
+};
+
+const GetHeightView: React.FC<OnboardingInterfaceProps> = ({
+  setIsNext,
+  formData,
+  setFormData,
+}) => {
+  useEffect(() => {
+    if (formData.height.length > 0) {
+      setIsNext(true);
+    } else {
+      setIsNext(false);
+    }
+  }, [formData.height, setIsNext]);
+
+  return (
+    <View style={[centerAll, {rowGap: vh(2)}]}>
+      <Text style={{color: '#1D2939', fontWeight: '700', fontSize: 24}}>
+        Your Height
+      </Text>
+      <TextInput
+        placeholder="Type here"
+        placeholderTextColor={'#6E778B'}
+        value={formData.height}
+        keyboardType="number-pad"
+        onChangeText={text => setFormData({...formData, height: text})}
+        style={{
+          borderWidth: 1,
+          borderColor: '#CCCED5',
+          width: '100%',
+          borderRadius: 8,
+          textAlign: 'center',
+          color: '#3E3792',
+          fontSize: 18,
+          fontWeight: '700',
+        }}
+      />
     </View>
   );
 };
