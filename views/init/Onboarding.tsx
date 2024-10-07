@@ -157,6 +157,9 @@ const GetWeightView: React.FC<OnboardingInterfaceProps> = ({
           fontWeight: '700',
         }}
       />
+      <Text style={{color: '#667085', fontWeight: '400', fontSize: 20}}>
+        kg
+      </Text>
     </View>
   );
 };
@@ -196,6 +199,9 @@ const GetHeightView: React.FC<OnboardingInterfaceProps> = ({
           fontWeight: '700',
         }}
       />
+      <Text style={{color: '#667085', fontWeight: '400', fontSize: 20}}>
+        cm
+      </Text>
     </View>
   );
 };
