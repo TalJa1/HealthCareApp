@@ -119,6 +119,7 @@ const MainContent: React.FC<{data: LearnMoreData}> = ({data}) => {
                   <Text style={styles.itemValue}>{food.value}</Text>
                 </View>
                 <TouchableOpacity
+                  disabled={true}
                   style={{
                     borderRadius: vw(20),
                     backgroundColor: '#E0EAFF',
@@ -149,6 +150,7 @@ const MainContent: React.FC<{data: LearnMoreData}> = ({data}) => {
                   </View>
                 </View>
                 <TouchableOpacity
+                  disabled={true}
                   style={{
                     borderRadius: vw(20),
                     backgroundColor: '#E0EAFF',
