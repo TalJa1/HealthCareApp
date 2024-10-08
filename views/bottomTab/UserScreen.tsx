@@ -113,9 +113,9 @@ const MainContent: React.FC = () => {
   return (
     <View style={{marginVertical: vh(2)}}>
       <View style={{paddingHorizontal: vw(5), rowGap: vh(2)}}>
-        <RenderLayout title="Cá nhân" renderData={Self} />
+        <RenderLayout title="User" renderData={Self} />
         <View>
-          <Text style={styles.title}>Cài đặt hệ thống</Text>
+          <Text style={styles.title}>System settings</Text>
           {SystemSetting.map((item, index) => {
             return (
               <TouchableOpacity
@@ -174,8 +174,8 @@ const MainContent: React.FC = () => {
             );
           })}
         </View>
-        <RenderLayout title="Trung tâm trợ giúp" renderData={HelpCenter} />
-        <RenderLayout title="Thông tin khác" renderData={OtherInfor} />
+        <RenderLayout title="Help Center" renderData={HelpCenter} />
+        <RenderLayout title="Other" renderData={OtherInfor} />
       </View>
     </View>
   );
